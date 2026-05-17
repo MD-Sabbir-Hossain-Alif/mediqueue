@@ -4,6 +4,7 @@ setServers(["1.1.1.1", "8.8.8.8"]);
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/Home/Navbar";
 
 export const metadata = {
 	title: " MediQueue - Tutor Booking System",
@@ -14,12 +15,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className="min-h-full flex flex-col">
+			<body>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
+					className="min-h-full flex flex-col"
 				>
+					<Navbar />
 					{children}
 				</ThemeProvider>
 			</body>
