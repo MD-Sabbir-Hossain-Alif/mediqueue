@@ -49,72 +49,99 @@
 }
 
 :root {
-  --background: #f7f7f7;
-  --foreground: #111111;
+  /* Light Theme */
+  --background: #f8fafc;
+  --foreground: #0f172a;
   --card: #ffffff;
-  --card-foreground: #252525;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #252525;
-  --primary: #343434;
-  --primary-foreground: #fbfbfb;
-  --secondary: #f7f7f7;
-  --secondary-foreground: #343434;
-  --muted: #f7f7f7;
-  --muted-foreground: #8e8e8e;
-  --accent: #f7f7f7;
-  --accent-foreground: #343434;
-  --destructive: #b91c1c;
-  --border: #ebebeb;
-  --input: #ebebeb;
-  --ring: #b5b5b5;
-  --chart-1: #dedede;
-  --chart-2: #8e8e8e;
-  --chart-3: #707070;
-  --chart-4: #5f5f5f;
-  --chart-5: #454545;
+  --popover-foreground: #0f172a;
+
+  --primary: #367e95;
+  --primary-foreground: #ffffff;
+  --primary-hover: #2a6a7f;
+  /* Hover color added */
+
+  --secondary: #e0f2fe;
+  --secondary-foreground: #164e63;
+  --secondary-hover: #bae6fd;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --accent: #72cfff;
+  --accent-foreground: #164e63;
+  --accent-hover: #63a8be;
+
+  --destructive: #ef4444;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #63a8be;
+
+  --chart-1: #367e95;
+  --chart-2: #509fc8;
+  --chart-3: #63a8be;
+  --chart-4: #72cfff;
+  --chart-5: #90ccdf;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #367e95;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e0f2fe;
+  --sidebar-accent-foreground: #164e63;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #63a8be;
+
   --radius: 0.625rem;
-  --sidebar: #fbfbfb;
-  --sidebar-foreground: #252525;
-  --sidebar-primary: #343434;
-  --sidebar-primary-foreground: #fbfbfb;
-  --sidebar-accent: #f7f7f7;
-  --sidebar-accent-foreground: #343434;
-  --sidebar-border: #ebebeb;
-  --sidebar-ring: #b5b5b5;
 }
 
 .dark {
-  --background: #121212;
-  --foreground: #ededed;
-  --card: #343434;
-  --card-foreground: #fbfbfb;
-  --popover: #343434;
-  --popover-foreground: #fbfbfb;
-  --primary: #ebebeb;
-  --primary-foreground: #343434;
-  --secondary: #454545;
-  --secondary-foreground: #fbfbfb;
-  --muted: #454545;
-  --muted-foreground: #b5b5b5;
-  --accent: #454545;
-  --accent-foreground: #fbfbfb;
+  /* Dark Theme */
+  --background: #02181f;
+  --foreground: #f0f9ff;
+
+  --card: #0b3745;
+  --card-foreground: #f0f9ff;
+
+  --popover: #0b3745;
+  --popover-foreground: #f0f9ff;
+
+  --primary: #72cfff;
+  --primary-foreground: #02181f;
+  --primary-hover: #90ccdf;
+  /* Hover color added */
+
+  --secondary: #1b586b;
+  --secondary-foreground: #f0f9ff;
+  --secondary-hover: #367e95;
+
+  --muted: #1b586b;
+  --muted-foreground: #bae6fd;
+
+  --accent: #90ccdf;
+  --accent-foreground: #02181f;
+  --accent-hover: #72cfff;
+
   --destructive: #f87171;
-  --border: #ffffff1a;
-  --input: #ffffff26;
-  --ring: #8e8e8e;
-  --chart-1: #dedede;
-  --chart-2: #8e8e8e;
-  --chart-3: #707070;
-  --chart-4: #5f5f5f;
-  --chart-5: #454545;
-  --sidebar: #343434;
-  --sidebar-foreground: #fbfbfb;
-  --sidebar-primary: #7d3eff;
-  --sidebar-primary-foreground: #fbfbfb;
-  --sidebar-accent: #454545;
-  --sidebar-accent-foreground: #fbfbfb;
-  --sidebar-border: #ffffff1a;
-  --sidebar-ring: #8e8e8e;
+  --border: #1e3a4d;
+  --input: #1e3a4d;
+  --ring: #72cfff;
+
+  --chart-1: #72cfff;
+  --chart-2: #63a8be;
+  --chart-3: #509fc8;
+  --chart-4: #367e95;
+  --chart-5: #1b586b;
+
+  --sidebar: #0b3745;
+  --sidebar-foreground: #f0f9ff;
+  --sidebar-primary: #72cfff;
+  --sidebar-primary-foreground: #02181f;
+  --sidebar-accent: #1b586b;
+  --sidebar-accent-foreground: #f0f9ff;
+  --sidebar-border: #1e3a4d;
+  --sidebar-ring: #72cfff;
 }
 
 @layer base {
@@ -131,15 +158,22 @@
   }
 }
 
-/* Smooth Scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Enhanced with react-spring / tailwind */
+/* Hover Utilities */
 @layer utilities {
-  .smooth-scroll {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+  .hover-primary {
+    transition: all 0.2s ease;
+  }
+
+  .hover-primary:hover {
+    background-color: var(--primary-hover) !important;
+    color: var(--primary-foreground) !important;
+  }
+
+  .hover-secondary:hover {
+    background-color: var(--secondary-hover) !important;
+  }
+
+  .hover-accent:hover {
+    background-color: var(--accent-hover) !important;
   }
 }

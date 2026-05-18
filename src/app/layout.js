@@ -2,6 +2,7 @@
 import { setServers } from "node:dns/promises";
 setServers(["1.1.1.1", "8.8.8.8"]);
 
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Home/Navbar";
@@ -11,11 +12,17 @@ export const metadata = {
 	description: "Bast website for student and tutor booking system almost free",
 };
 
+const dmsans = DM_Sans({
+	variable: "--font-dm-sans",
+	subsets: ["latin"],
+	weight: ["100", "300", "400", "700", "900"],
+});
+
 
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body>
+			<body className={dmsans.className}>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"

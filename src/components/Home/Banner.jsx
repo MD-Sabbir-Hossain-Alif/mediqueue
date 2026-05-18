@@ -18,7 +18,7 @@ const Banner = () => {
     const slides = [
         {
             id: 1,
-            image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
+            image: "https://images.unsplash.com/photo-1511629091441-ee46146481b6?q=80&w=2071&auto=format&fit=crop",
             title: "Learn from the Best",
             subtitle:
                 "Connect with expert tutors who are passionate about your success",
@@ -34,7 +34,7 @@ const Banner = () => {
         },
         {
             id: 3,
-            image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop",
+            image: "https://images.unsplash.com/photo-1588072432733-2b6a4873b187?q=80&w=2070&auto=format&fit=crop",
             title: "Achieve Your Goals",
             subtitle: "Flexible scheduling • Affordable rates • Proven results",
             highlight: "Join 50,000+ Happy Students",
@@ -70,37 +70,37 @@ const Banner = () => {
                             alt={slide.title}
                             fill
                             priority
-                            className="object-cover"
+                            className="object-cover object-top"
                             sizes="100vw"
                         />
 
-                        {/* Dark Overlay */}
-                        <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-transparent" />
+                        {/* Blue Theme Overlay */}
+                        <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/30 to-black/50" />
 
                         {/* Content Container */}
                         <div className="absolute inset-0 flex items-center">
-                            <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
-                                <div className="max-w-xl space-y-6">
-                                    {/* Highlight */}
-                                    <div className="inline-block rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2 text-sm font-medium text-white">
+                            <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 ">
+                                <div className="max-w-2xl space-y-4 ">
+                                    {/* Highlight Badge */}
+                                    <div className="inline-block rounded-full bg-white/10 backdrop-blur-md border border-[#90e0ef]/30 px-5 py-2 text-sm font-medium text-white">
                                         {slide.highlight}
                                     </div>
 
                                     {/* Title */}
-                                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tighter">
+                                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tighter">
                                         {slide.title}
                                     </h1>
 
                                     {/* Subtitle */}
-                                    <p className="text-lg md:text-xl text-white/90 max-w-md">
+                                    <p className="text-lg md:text-xl text-white/90 max-w-md ">
                                         {slide.subtitle}
                                     </p>
 
-                                    {/* CTA Button */}
+                                    {/* CTA Button - Using Primary Color */}
                                     <Link href="/tutors">
-                                        <Button className="mt-6 group flex items-center gap-3 bg-white hover:bg-white/90 active:bg-white text-black font-semibold text-lg px-9 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg">
+                                        <Button className="mt-6 group flex items-center gap-3 bg-primary hover:bg-(--primary-hover)  font-semibold text-lg px-9 py-6 rounded-xl transition-all duration-300 hover:scale-105 cursor-pointer">
                                             Find Your Tutor
-                                            <span className="text-2xl group-hover:translate-x-1 transition-transform">
+                                            <span className="text-2xl transition-transform">
                                                 <FaArrowRightLong />
                                             </span>
                                         </Button>
@@ -112,12 +112,13 @@ const Banner = () => {
                 ))}
             </Swiper>
 
-            {/* Navigation Buttons */}
-            <Button className="swiper-button-prev absolute left-4 md:left-8 top-1/2 z-20 bg-white/40 hover:bg-white/70 p-4 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12">
-                <FaArrowLeftLong className="text-black" />
+            {/* Navigation Buttons - Updated with Theme Colors */}
+            <Button className="swiper-button-prev absolute left-4 md:left-8 top-1/2 z-20 bg-white/90 hover:bg-white text-[#0077b6] p-3 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12 border border-white/50">
+                <FaArrowLeftLong />
             </Button>
-            <Button className="swiper-button-next absolute right-4 md:right-8 top-1/2 z-20 bg-white/40 hover:bg-white/70 p-4 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12">
-                <FaArrowRightLong className="text-black" />
+
+            <Button className="swiper-button-next absolute right-4 md:right-8 top-1/2 z-20 bg-white/90 hover:bg-white text-[#0077b6] p-3 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12 border border-white/50">
+                <FaArrowRightLong />
             </Button>
 
             {/* Pagination */}

@@ -8,7 +8,7 @@ const page = async () => {
     return (
         <div>
             <div className="text-center my-8">
-                <h1 className="text-2xl font-bold ">Our Best Tutors</h1>
+                <h1 className="text-5xl font-bold ">Our Best Tutors</h1>
                 <p className="text-gray-500 mt-2">
                     Meet our experienced and dedicated tutors who are here to
                     help you succeed.
