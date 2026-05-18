@@ -35,8 +35,8 @@ const Register = () => {
     return (
         <div className="min-h-screen bg-background flex items-center justify-center p-4 relative overflow-hidden">
             {/* Background Image Overlay */}
-            <div className="absolute inset-0 bg-black bg-cover bg-center opacity-40" />
-            <div className="absolute inset-0 bg-black/70 dark:bg-black/80" />
+            {/* <div className="absolute inset-0 bg-foreground bg-cover bg-center opacity-40" /> */}
+            {/* <div className="absolute inset-0 bg-black/70 dark:bg-black/80" /> */}
 
             <Card className="w-full max-w-md bg-card/95 border-border backdrop-blur-xl z-10 shadow-2xl">
                 <CardHeader className="text-center pb-8">

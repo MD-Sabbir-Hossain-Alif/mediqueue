@@ -11,7 +11,7 @@ const Navbar = () => {
                             MediQueue
                         </Link>
                     </div>
-                    <ul className="flex items-center gap-4">
+                    <ul className="flex items-center justify-center gap-4">
                         <li>
                             <Link href="/login">Login</Link>
                         </li>
