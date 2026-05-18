@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
 			<body>
 				<ThemeProvider
 					attribute="class"
-					defaultTheme="light"
+					defaultTheme="system"
 					enableSystem
 					className="min-h-full flex flex-col"
 				>
