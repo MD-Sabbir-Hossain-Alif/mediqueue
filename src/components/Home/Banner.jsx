@@ -11,6 +11,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import { Button } from "../ui/button";
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 const Banner = () => {
     const slides = [
@@ -39,7 +41,7 @@ const Banner = () => {
         },
     ];
     return (
-        <div className="relative w-full h-145 md:h-162.5 lg:h-175 overflow-hidden">
+        <div className="relative w-full h-145 md:h-162.5 lg:h-180 overflow-hidden">
             <Swiper
                 modules={[Navigation, Pagination, Autoplay, EffectFade]}
                 effect="fade"
@@ -96,12 +98,12 @@ const Banner = () => {
 
                                     {/* CTA Button */}
                                     <Link href="/tutors">
-                                        <button className="mt-6 group flex items-center gap-3 bg-white hover:bg-white/90 active:bg-white text-black font-semibold text-lg px-9 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg">
+                                        <Button className="mt-6 group flex items-center gap-3 bg-white hover:bg-white/90 active:bg-white text-black font-semibold text-lg px-9 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg">
                                             Find Your Tutor
                                             <span className="text-2xl group-hover:translate-x-1 transition-transform">
-                                                →
+                                                <FaArrowRightLong />
                                             </span>
-                                        </button>
+                                        </Button>
                                     </Link>
                                 </div>
                             </div>
@@ -111,12 +113,12 @@ const Banner = () => {
             </Swiper>
 
             {/* Navigation Buttons */}
-            <button className="swiper-button-prev absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/70 text-white p-4 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12">
-                ←
-            </button>
-            <button className="swiper-button-next absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/70 text-white p-4 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12">
-                →
-            </button>
+            <Button className="swiper-button-prev absolute left-4 md:left-8 top-1/2 z-20 bg-white/40 hover:bg-white/70 p-4 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12">
+                <FaArrowLeftLong className="text-black" />
+            </Button>
+            <Button className="swiper-button-next absolute right-4 md:right-8 top-1/2 z-20 bg-white/40 hover:bg-white/70 p-4 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12">
+                <FaArrowRightLong className="text-black" />
+            </Button>
 
             {/* Pagination */}
             <div className="swiper-pagination bottom-8!" />

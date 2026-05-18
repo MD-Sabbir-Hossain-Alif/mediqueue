@@ -20,10 +20,11 @@ export default function RootLayout({ children }) {
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
-					className="min-h-full flex flex-col"
 				>
 					<Navbar />
-					{children}
+					<main className="container mx-auto min-h-full flex flex-col">
+						{children}
+					</main>
 				</ThemeProvider>
 			</body>
 		</html>
