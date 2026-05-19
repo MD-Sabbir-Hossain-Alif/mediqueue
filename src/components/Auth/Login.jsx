@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { LuUser, LuLock, LuEye, LuEyeOff, LuHeartPulse } from "react-icons/lu";
+import { LuLock, LuEye, LuEyeOff, LuMail } from "react-icons/lu";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/card";
 import { toast } from "sonner";
 import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
 // Validation Schema
 const loginSchema = z.object({
@@ -28,12 +30,13 @@ const loginSchema = z.object({
     password: z
         .string()
         .min(1, "Password is required")
-        .min(6, "Password must be at least 6 characters long"),
+        .min(6, "Password must be at least 6 characters long")
+        .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+        .regex(/[a-z]/, "Password must contain at least one lowercase letter"),
 });
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const form = useForm({
         resolver: zodResolver(loginSchema),
@@ -41,52 +44,69 @@ const Login = () => {
         mode: "onBlur",
     });
 
-    const onSubmit = async (data) => {
-        setIsSubmitting(true);
+    const onSubmit = async (formData) => {
+        const { data, error } = await authClient.signIn.email({
+            email: formData.email,
+            password: formData.password,
+            rememberMe: true,
+            callbackURL: "/",
+        });
 
-        try {
-            console.log("Login attempt:", data);
-            await new Promise((resolve) => setTimeout(resolve, 1200));
-
+        if (data) {
+            // onsole.log("Login attempt:", data);
             toast.success("Login successful!", {
                 description: "Welcome back to MediQueue",
             });
-        } catch (error) {
-            toast.error("Login failed. Please try again.");
-        } finally {
-            setIsSubmitting(false);
+        } else if (error) {
+            toast.error(error.message || "Login failed. Please try again.");
+            return;
         }
     };
 
     return (
         <div className="min-h-screen bg-background flex">
-            {/* Left Branding Panel  */}
-            <div className="hidden lg:flex lg:w-1/2 bg-primary flex-col items-center justify-center p-12 relative overflow-hidden">
-                <div className="relative z-10 flex flex-col items-center text-center max-w-md">
-                    <h1 className="text-4xl font-bold text-primary-foreground tracking-tight mb-2">
+            <div className="hidden lg:flex lg:w-1/2 bg-background flex-col items-center justify-center p-12 relative overflow-hidden">
+                {/* decorative circles */}
+                <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-foreground/5" />
+                <div className="absolute -bottom-32 -right-20 w-80 h-80 rounded-full bg-foreground/5" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 rounded-full bg-foreground/3" />
+
+                <div className="relative z-10 flex flex-col items-center text-center max-w-sm">
+                    {/* Brand name */}
+                    <h1 className="text-4xl font-bold text-foreground tracking-tight mb-2">
                         MediQueue
                     </h1>
-                    <p className="text-primary-foreground/60 text-sm font-medium uppercase tracking-widest mb-8">
+                    <p className="text-foreground/60 text-sm font-medium uppercase tracking-widest mb-8">
                         Tutor Booking Platform
                     </p>
-                    <div className="w-12 h-px bg-primary-foreground/30 mb-8" />
-                    <p className="text-primary-foreground/80 text-lg leading-relaxed">
-                        Connect with expert tutors for physics, chemistry,
-                        mathematics, biology, economics, english and more.
-                    </p>
+
+                    {/* Divider */}
+                    <div className="w-12 h-px bg-foreground/30 mb-8" />
+
+                    {/* Features list */}
+                    <ul className="text-foreground/80 text-sm space-y-4 text-left w-full">
+                        {[
+                            "Access 500+ verified best tutors",
+                            "Study physics, chemistry, mathematics & more",
+                            "Book sessions that fit your schedule",
+                            "Track your progress with smart analytics",
+                        ].map((feat) => (
+                            <li key={feat} className="flex items-start gap-3">
+                                <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full dark:bg-[#72cfff] bg-[#367e95] flex items-center justify-center text-white dark:text-black text-xs font-bold">
+                                    ✓
+                                </span>
+                                {feat}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
 
             {/* Right Form Panel */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
                 <div className="w-full max-w-md">
-                    {/* Mobile Logo */}
-                    <div className="mb-8 lg:hidden">
-                        <span className="text-xl font-bold">MediQueue</span>
-                    </div>
-
                     <Card>
-                        <CardHeader className="pb-6 text-center">
+                        <CardHeader className="text-center">
                             <CardTitle className="text-3xl font-bold tracking-tight">
                                 Welcome back
                             </CardTitle>
@@ -98,7 +118,7 @@ const Login = () => {
                         <CardContent>
                             <form
                                 onSubmit={form.handleSubmit(onSubmit)}
-                                className="space-y-6"
+                                className="space-y-3"
                             >
                                 {/* Email Field */}
                                 <Field>
@@ -107,13 +127,13 @@ const Login = () => {
                                     </FieldLabel>
                                     <div className="relative">
                                         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                                            <LuUser size={18} />
+                                            <LuMail size={18} />
                                         </div>
                                         <Input
                                             id="email"
                                             type="email"
                                             placeholder="you@example.com"
-                                            className="pl-10 h-11"
+                                            className="pl-10 h-11 bg-input dark:bg-input-dark"
                                             {...form.register("email")}
                                         />
                                     </div>
@@ -124,9 +144,19 @@ const Login = () => {
 
                                 {/* Password Field */}
                                 <Field>
-                                    <FieldLabel htmlFor="password">
-                                        Password
-                                    </FieldLabel>
+                                    <div className="flex justify-between items-center">
+                                        <FieldLabel htmlFor="password">
+                                            Password
+                                        </FieldLabel>
+                                        <div className="text-right mt-2">
+                                            <Link
+                                                href="/login"
+                                                className="text-sm text-primary hover:underline font-medium"
+                                            >
+                                                Forgot password?
+                                            </Link>
+                                        </div>
+                                    </div>
                                     <div className="relative">
                                         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                                             <LuLock size={18} />
@@ -139,7 +169,7 @@ const Login = () => {
                                                     : "password"
                                             }
                                             placeholder="Enter your password"
-                                            className="pl-10 pr-10 h-11"
+                                            className="pl-10 pr-10 h-11 bg-input dark:bg-input-dark"
                                             {...form.register("password")}
                                         />
                                         <button
@@ -166,14 +196,14 @@ const Login = () => {
 
                                 <Button
                                     type="submit"
-                                    className="w-full h-11 font-medium transition-all duration-300 bg-primary hover:bg-(--primary-hover) 
+                                    className="w-full h-11 mt-3 font-semibold transition-all duration-300 bg-primary hover:bg-(--primary-hover) 
                                 cursor-pointer"
                                 >
                                     Sign in
                                 </Button>
 
                                 {/* Divider */}
-                                <div className="relative mb-5">
+                                <div className="relative mb-3">
                                     <div className="absolute inset-0 flex items-center">
                                         <span className="w-full border-t border-border" />
                                     </div>
@@ -187,7 +217,7 @@ const Login = () => {
                                 {/* Google */}
                                 <Button
                                     type="button"
-                                    className="w-full h-11 gap-2 font-medium transition-all duration-300 bg-primary hover:bg-(--primary-hover) 
+                                    className="w-full h-11 gap-2 font-semibold transition-all duration-300 bg-primary hover:bg-(--primary-hover) 
                                 cursor-pointer"
                                 >
                                     <FcGoogle size={20} />
@@ -195,13 +225,13 @@ const Login = () => {
                                 </Button>
                             </form>
 
-                            <div className="mt-6 text-center text-sm text-muted-foreground">
+                            <div className="mt-3 text-center text-sm text-muted-foreground">
                                 Don&apos;t have an account?{" "}
                                 <a
                                     href="/register"
                                     className="text-primary hover:underline font-medium"
                                 >
-                                    Create one free
+                                    Register
                                 </a>
                             </div>
                         </CardContent>
