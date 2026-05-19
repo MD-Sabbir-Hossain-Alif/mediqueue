@@ -5,7 +5,13 @@ import {
     FaClock,
     FaMapPin,
     FaAward,
-    FaCalendar as DateIcon,
+    FaStar,
+    FaGraduationCap,
+    FaShieldHalved,
+    FaBolt,
+    FaChalkboardUser,
+    FaBookOpen,
+    FaUsers,
 } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,9 +20,7 @@ import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function TutorDetailsPage({ tutor }) {
-    // Tutor Data (In real app, fetch this using useEffect or params)
-    const  {
-        _id,
+    const {
         tutorName,
         photo,
         subjectCategory,
@@ -30,159 +34,221 @@ export default function TutorDetailsPage({ tutor }) {
         location,
         teachingMode,
         description,
+        // fallbacks for optional fields
+        totalStudents = 128,
+        rating = 4.9,
+        reviewCount = 47,
+        experience = "5+ Years",
     } = tutor;
 
     return (
-        <div className="min-h-screen bg-background pb-16">
-            {/* Hero Section */}
-            <div className="relative h-105 bg-linear-to-br from-primary/10 to-secondary/30">
-                <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+        <div className="min-h-screen bg-background">
+            {/* ── Hero Banner ─────────────────────────────── */}
+            <div className="relative bg-linear-to-br from-primary/15 via-primary/5 to-secondary/20 pt-12 pb-28 sm:pb-32 overflow-hidden">
+                {/* decorative blobs */}
+                <div className="pointer-events-none absolute -top-20 -right-20 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
+                <div className="pointer-events-none absolute bottom-0 -left-16 w-72 h-72 rounded-full bg-secondary/20 blur-2xl" />
 
-                <div className="container mx-auto px-6 pt-20 relative z-10">
-                    <div className="flex flex-col md:flex-row gap-8 items-end">
-                        <div className="relative -mb-16">
-                            <Avatar className="w-40 h-40 border-4 border-background shadow-2xl">
+                <div className="container mx-auto px-4 sm:px-6 relative z-10">
+                    <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-center sm:items-end">
+                        {/* ── Avatar ── */}
+                        <div className="shrink-0">
+                            <Avatar className="w-32 h-32 sm:w-40 sm:h-40 border-4 border-background shadow-2xl ring-2 ring-primary/20">
                                 <AvatarImage
                                     src={photo}
                                     alt={tutorName}
                                     className="object-cover"
                                 />
-                                <AvatarFallback className="text-4xl">
-                                    AR
+                                <AvatarFallback className="text-4xl font-bold">
+                                    {tutorName?.slice(0, 2).toUpperCase()}
                                 </AvatarFallback>
                             </Avatar>
                         </div>
 
-                        <div className="flex-1 pb-6">
-                            <div className="flex flex-wrap gap-3 mb-3">
+                        {/* ── Info right of avatar ── */}
+                        <div className="flex-1 text-center sm:text-left pb-2 space-y-3">
+                            {/* Subject & mode badges */}
+                            <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                                 <Badge
                                     variant="default"
-                                    className="text-base px-4 py-1"
+                                    className="text-sm px-3 py-1"
                                 >
                                     {subjectCategory}
                                 </Badge>
-                                <Badge variant="secondary">
+                                <Badge
+                                    variant="secondary"
+                                    className="text-sm px-3 py-1"
+                                >
                                     {teachingMode}
                                 </Badge>
                             </div>
 
-                            <h1 className="text-5xl font-bold text-foreground">
+                            {/* Name */}
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-tight">
                                 {tutorName}
                             </h1>
-                            <p className="text-xl text-muted-foreground mt-2 flex items-center gap-2">
-                                <FaMapPin className="text-primary" />{" "}
+
+                            {/* Institution */}
+                            <p className="text-sm sm:text-base text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
+                                <FaGraduationCap className="text-primary shrink-0" />
+                                {institutionExperience}
+                            </p>
+
+                            {/* Location */}
+                            <p className="text-sm text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
+                                <FaMapPin className="text-primary shrink-0" />
                                 {location}
                             </p>
+
+                            {/* ── Stat pills ── */}
+                            <div className="flex flex-wrap justify-center sm:justify-start gap-2 pt-1">
+                                <StatPill
+                                    icon={<FaStar className="text-amber-400" />}
+                                    value={rating}
+                                    label={`(${reviewCount} reviews)`}
+                                />
+                                <StatPill
+                                    icon={<FaUsers className="text-primary" />}
+                                    value={totalStudents}
+                                    label="Students"
+                                />
+                                <StatPill
+                                    icon={
+                                        <FaChalkboardUser className="text-primary" />
+                                    }
+                                    value={experience}
+                                    label="Experience"
+                                />
+                                <StatPill
+                                    icon={
+                                        <FaBookOpen className="text-primary" />
+                                    }
+                                    value={totalSlot}
+                                    label="Slots Left"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="container mx-auto px-6 -mt-8 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Main Content */}
-                    <div className="lg:col-span-2 space-y-8">
+            {/* ── Main Grid ───────────────────────────────── */}
+            <div className="container mx-auto px-4 sm:px-6 -mt-14 sm:-mt-16 relative z-10 pb-16">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+                    {/* ── Left / Main ── */}
+                    <div className="lg:col-span-2 space-y-6">
                         {/* About */}
-                        <Card>
+                        <Card className="shadow-md">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-3 text-2xl">
-                                    <FaAward className="text-primary" /> About
-                                    Tutor
+                                <CardTitle className="flex items-center gap-2 text-xl">
+                                    <FaAward className="text-primary" />
+                                    About Tutor
                                 </CardTitle>
                             </CardHeader>
-                            <CardContent className="text-lg leading-relaxed text-foreground/90">
+                            <CardContent className="text-[16px] leading-relaxed text-foreground/85">
                                 {description}
                             </CardContent>
                         </Card>
 
-                        {/* Experience */}
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>
-                                    Qualifications & Experience
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-lg">
-                                    {institutionExperience}
-                                </p>
-                            </CardContent>
-                        </Card>
+                        {/* Trust badges */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            {[
+                                {
+                                    icon: <FaStar className="text-amber-500" />,
+                                    label: "Top Rated",
+                                    sub: "Highly reviewed",
+                                },
+                                {
+                                    icon: (
+                                        <FaShieldHalved className="text-primary" />
+                                    ),
+                                    label: "Verified Tutor",
+                                    sub: "ID & credentials checked",
+                                },
+                                {
+                                    icon: <FaBolt className="text-green-500" />,
+                                    label: "Fast Response",
+                                    sub: "Within 2 hours",
+                                },
+                            ].map(({ icon, label, sub }) => (
+                                <Card key={label} className="shadow-sm">
+                                    <CardContent className="pt-5 flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 text-lg">
+                                            {icon}
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-sm">
+                                                {label}
+                                            </p>
+                                            <p className="text-xs text-muted-foreground">
+                                                {sub}
+                                            </p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Sidebar - Booking Card */}
-                    <div className="space-y-6">
-                        <Card className="sticky top-6">
+                    {/* ── Right / Sidebar ── */}
+                    <div className="space-y-5">
+                        {/* Booking card */}
+                        <Card className="shadow-lg sticky top-6">
                             <CardHeader>
                                 <CardTitle className="text-3xl font-bold text-primary">
                                     ৳{hourlyFee}
-                                    <span className="text-base font-normal text-muted-foreground">
+                                    <span className="text-sm font-normal text-muted-foreground">
                                         {" "}
                                         / hour
                                     </span>
                                 </CardTitle>
                             </CardHeader>
 
-                            <CardContent className="space-y-6">
+                            <CardContent className="space-y-5">
                                 <div className="space-y-4">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
-                                            <FaCalendar className="text-primary" />
-                                        </div>
-                                        <div>
-                                            <p className="font-medium">
-                                                Available Days
-                                            </p>
-                                            <p className="text-sm text-muted-foreground">
-                                                {availableDays}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
-                                            <FaClock className="text-primary" />
-                                        </div>
-                                        <div>
-                                            <p className="font-medium">
-                                                Time Slot
-                                            </p>
-                                            <p className="text-sm text-muted-foreground">
-                                                {availableTimeSlot}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
-                                            <DateIcon className="text-primary" />
-                                        </div>
-                                        <div>
-                                            <p className="font-medium">
-                                                Session Period
-                                            </p>
-                                            <p className="text-sm text-muted-foreground">
-                                                {sessionStartDate} —{" "}
-                                                {sessionEndDate}
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <DetailRow
+                                        icon={<FaCalendar />}
+                                        label="Available Days"
+                                        value={availableDays}
+                                    />
+                                    <DetailRow
+                                        icon={<FaClock />}
+                                        label="Time Slot"
+                                        value={availableTimeSlot}
+                                    />
+                                    <DetailRow
+                                        icon={<FaCalendar />}
+                                        label="Session Period"
+                                        value={`${sessionStartDate} — ${sessionEndDate}`}
+                                    />
                                 </div>
 
                                 <Separator />
 
-                                <div>
-                                    <p className="text-sm text-muted-foreground mb-1">
-                                        Available Slots
+                                <div className="flex items-center justify-between">
+                                    <p className="text-sm text-muted-foreground">
+                                        Slots Remaining
                                     </p>
-                                    <p className="text-2xl font-semibold">
-                                        {totalSlot} Sessions Left
-                                    </p>
+                                    <span className="text-lg font-bold text-foreground">
+                                        {totalSlot}
+                                        <span className="text-sm font-normal text-muted-foreground ml-1">
+                                            sessions
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+                                    <div
+                                        className="h-full rounded-full bg-primary transition-all"
+                                        style={{
+                                            width: `${Math.min(100, ((10 - (totalSlot ?? 0)) / 10) * 100)}%`,
+                                        }}
+                                    />
                                 </div>
 
                                 <Button
                                     size="lg"
-                                    className="w-full text-lg py-7 hover-primary"
+                                    className="w-full text-base font-semibold py-6"
                                     onClick={() =>
                                         alert("Booking modal will open here")
                                     }
@@ -191,36 +257,62 @@ export default function TutorDetailsPage({ tutor }) {
                                 </Button>
 
                                 <p className="text-center text-xs text-muted-foreground">
-                                    Secure payment • Instant confirmation
+                                    🔒 Secure payment · Instant confirmation
                                 </p>
                             </CardContent>
                         </Card>
 
-                        {/* Quick Info */}
-                        <Card>
-                            <CardContent className="pt-6">
-                                <div className="flex items-center gap-3 text-sm">
-                                    <div className="flex-1 text-center border-r">
-                                        <p className="text-muted-foreground">
-                                            Teaching Mode
-                                        </p>
-                                        <p className="font-semibold mt-1">
-                                            {teachingMode}
-                                        </p>
-                                    </div>
-                                    <div className="flex-1 text-center">
-                                        <p className="text-muted-foreground">
-                                            Response Time
-                                        </p>
-                                        <p className="font-semibold mt-1 text-green-600">
-                                            Within 2 hours
-                                        </p>
-                                    </div>
+                        {/* Quick stat card */}
+                        <Card className="shadow-sm">
+                            <CardContent className="pt-5 grid grid-cols-2 divide-x text-center">
+                                <div className="pr-4">
+                                    <p className="text-xs text-muted-foreground mb-1">
+                                        Teaching Mode
+                                    </p>
+                                    <p className="font-semibold text-sm">
+                                        {teachingMode}
+                                    </p>
+                                </div>
+                                <div className="pl-4">
+                                    <p className="text-xs text-muted-foreground mb-1">
+                                        Response Time
+                                    </p>
+                                    <p className="font-semibold text-sm text-green-600">
+                                        ≤ 2 hours
+                                    </p>
                                 </div>
                             </CardContent>
                         </Card>
                     </div>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+/* ── Stat pill used in hero ── */
+function StatPill({ icon, value, label }) {
+    return (
+        <div className="flex items-center gap-1.5 bg-background/70 backdrop-blur-sm border border-border rounded-full px-3 py-1.5 text-sm shadow-sm">
+            {icon}
+            <span className="font-semibold">{value}</span>
+            <span className="text-muted-foreground">{label}</span>
+        </div>
+    );
+}
+
+/* ── Detail row used in sidebar ── */
+function DetailRow({ icon, label, value }) {
+    return (
+        <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0 text-primary">
+                {icon}
+            </div>
+            <div className="min-w-0">
+                <p className="text-sm font-medium leading-none">{label}</p>
+                <p className="text-sm text-muted-foreground mt-1 truncate">
+                    {value}
+                </p>
             </div>
         </div>
     );

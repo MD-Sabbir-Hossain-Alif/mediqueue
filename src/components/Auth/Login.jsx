@@ -63,6 +63,13 @@ const Login = () => {
         }
     };
 
+    // google login
+    const handleGoogleLogin = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+    };
+
     return (
         <div className="min-h-screen bg-background flex">
             <div className="hidden lg:flex lg:w-1/2 bg-background flex-col items-center justify-center p-12 relative overflow-hidden">
@@ -216,6 +223,7 @@ const Login = () => {
 
                                 {/* Google */}
                                 <Button
+                                    onClick={handleGoogleLogin}
                                     type="button"
                                     className="w-full h-11 gap-2 font-semibold transition-all duration-300 bg-primary hover:bg-(--primary-hover) 
                                 cursor-pointer"

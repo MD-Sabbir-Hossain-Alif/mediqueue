@@ -73,6 +73,13 @@ const Register = () => {
         }
     };
 
+    // google login
+    const handleGoogleLogin = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+    };
+
     return (
         <div className="min-h-screen bg-background flex">
             {/* ── Left branding panel ── */}
@@ -264,6 +271,7 @@ const Register = () => {
 
                                 {/* Google */}
                                 <Button
+                                    onClick={handleGoogleLogin}
                                     type="button"
                                     className="w-full h-11 gap-2 font-semibold transition-all duration-300 bg-primary hover:bg-(--primary-hover) 
                                 cursor-pointer"
