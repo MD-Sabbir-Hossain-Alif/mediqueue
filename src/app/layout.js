@@ -6,10 +6,11 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Home/Navbar";
+import { Toaster } from "sonner";
 
 export const metadata = {
 	title: " MediQueue - Tutor Booking System",
-	description: "Bast website for student and tutor booking system almost free",
+	description: "Best website for student and tutor booking system almost free",
 };
 
 const dmsans = DM_Sans({
@@ -21,7 +22,7 @@ const dmsans = DM_Sans({
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="en" className="scroll-smooth" suppressHydrationWarning>
 			<body className={dmsans.className}>
 				<ThemeProvider
 					attribute="class"
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
 					<main className="container mx-auto min-h-full flex flex-col">
 						{children}
 					</main>
+					<Toaster position="top-center" />
 				</ThemeProvider>
 			</body>
 		</html>
