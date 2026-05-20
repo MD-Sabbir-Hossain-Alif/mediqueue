@@ -29,7 +29,8 @@ export default function TutorDetailsPage({ tutor }) {
         totalSlot,
         sessionStartDate,
         sessionEndDate,
-        institutionExperience,
+        institution,
+        experience,
         location,
         teachingMode,
         description,
@@ -37,12 +38,11 @@ export default function TutorDetailsPage({ tutor }) {
         totalStudents = 128,
         rating = 4.9,
         reviewCount = 47,
-        experience = "5+ Years",
     } = tutor;
 
     return (
         <div className="min-h-screen bg-background">
-            {/* ── Hero Banner ─────────────────────────────── */}
+            {/* ── Hero Banner ── */}
             <div className="relative bg-linear-to-br from-primary/15 via-primary/5 to-secondary/20 pt-8 pb-18 sm:pb-24 overflow-hidden">
                 {/* decorative blobs */}
                 <div className="pointer-events-none absolute -top-20 -right-20 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
@@ -74,7 +74,7 @@ export default function TutorDetailsPage({ tutor }) {
                             {/* Institution */}
                             <p className="text-sm sm:text-base text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
                                 <FaGraduationCap className="text-primary shrink-0" />
-                                {institutionExperience}
+                                {institution}
                             </p>
 
                             {/* ── Stat pills ── */}
@@ -117,7 +117,7 @@ export default function TutorDetailsPage({ tutor }) {
                 </div>
             </div>
 
-            {/* ── Main Grid ───────────────────────────────── */}
+            {/* ── Main Grid ── */}
             <div className="container mx-auto px-4 sm:px-6 -mt-14 sm:-mt-16 relative z-10 pb-16">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
                     {/* ── Left / Main ── */}
