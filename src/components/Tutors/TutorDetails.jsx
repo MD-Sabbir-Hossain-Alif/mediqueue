@@ -3,7 +3,7 @@
 import {
     FaCalendar,
     FaClock,
-    FaMapPin,
+    FaLocationDot,
     FaAward,
     FaStar,
     FaGraduationCap,
@@ -16,7 +16,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function TutorDetailsPage({ tutor }) {
@@ -44,12 +43,12 @@ export default function TutorDetailsPage({ tutor }) {
     return (
         <div className="min-h-screen bg-background">
             {/* ── Hero Banner ─────────────────────────────── */}
-            <div className="relative bg-linear-to-br from-primary/15 via-primary/5 to-secondary/20 pt-12 pb-28 sm:pb-32 overflow-hidden">
+            <div className="relative bg-linear-to-br from-primary/15 via-primary/5 to-secondary/20 pt-8 pb-18 sm:pb-24 overflow-hidden">
                 {/* decorative blobs */}
                 <div className="pointer-events-none absolute -top-20 -right-20 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
                 <div className="pointer-events-none absolute bottom-0 -left-16 w-72 h-72 rounded-full bg-secondary/20 blur-2xl" />
 
-                <div className="container mx-auto px-4 sm:px-6 relative z-10">
+                <div className="container mx-auto flex justify-between items-center flex-wrap px-4 sm:px-6 relative z-10">
                     <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-center sm:items-end">
                         {/* ── Avatar ── */}
                         <div className="shrink-0">
@@ -67,22 +66,6 @@ export default function TutorDetailsPage({ tutor }) {
 
                         {/* ── Info right of avatar ── */}
                         <div className="flex-1 text-center sm:text-left pb-2 space-y-3">
-                            {/* Subject & mode badges */}
-                            <div className="flex flex-wrap justify-center sm:justify-start gap-2">
-                                <Badge
-                                    variant="default"
-                                    className="text-sm px-3 py-1"
-                                >
-                                    {subjectCategory}
-                                </Badge>
-                                <Badge
-                                    variant="secondary"
-                                    className="text-sm px-3 py-1"
-                                >
-                                    {teachingMode}
-                                </Badge>
-                            </div>
-
                             {/* Name */}
                             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-tight">
                                 {tutorName}
@@ -92,12 +75,6 @@ export default function TutorDetailsPage({ tutor }) {
                             <p className="text-sm sm:text-base text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
                                 <FaGraduationCap className="text-primary shrink-0" />
                                 {institutionExperience}
-                            </p>
-
-                            {/* Location */}
-                            <p className="text-sm text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
-                                <FaMapPin className="text-primary shrink-0" />
-                                {location}
                             </p>
 
                             {/* ── Stat pills ── */}
@@ -129,6 +106,14 @@ export default function TutorDetailsPage({ tutor }) {
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <Badge
+                            variant="default"
+                            className="text-3xl px-12 py-8 rounded-none rounded-bl-4xl rounded-tr-4xl uppercase"
+                        >
+                            {subjectCategory}
+                        </Badge>
+                    </div>
                 </div>
             </div>
 
@@ -139,11 +124,16 @@ export default function TutorDetailsPage({ tutor }) {
                     <div className="lg:col-span-2 space-y-6">
                         {/* About */}
                         <Card className="shadow-md">
-                            <CardHeader>
+                            <CardHeader className="flex items-center justify-center flex-wrap sm:justify-between gap-4">
                                 <CardTitle className="flex items-center gap-2 text-xl">
                                     <FaAward className="text-primary" />
                                     About Tutor
                                 </CardTitle>
+                                {/* Location */}
+                                <p className="text-sm text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
+                                    <FaLocationDot className="text-primary shrink-0" />
+                                    {location}
+                                </p>
                             </CardHeader>
                             <CardContent className="text-[16px] leading-relaxed text-foreground/85">
                                 {description}
@@ -172,7 +162,7 @@ export default function TutorDetailsPage({ tutor }) {
                                 },
                             ].map(({ icon, label, sub }) => (
                                 <Card key={label} className="shadow-sm">
-                                    <CardContent className="pt-5 flex items-center gap-3">
+                                    <CardContent className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 text-lg">
                                             {icon}
                                         </div>
@@ -202,7 +192,23 @@ export default function TutorDetailsPage({ tutor }) {
                                         / hour
                                     </span>
                                 </CardTitle>
+                                {/* Subject & mode badges */}
                             </CardHeader>
+
+                            <div className="absolute top-4 right-4">
+                                <Badge
+                                    variant="secondary"
+                                    className={`bg-[#60a5fa] text-black font-medium py-2 ${
+                                        teachingMode === "Online"
+                                            ? "bg-[#34d399]"
+                                            : teachingMode === "Offline"
+                                              ? ""
+                                              : "bg-[#22d3ee]"
+                                    }`}
+                                >
+                                    {teachingMode}
+                                </Badge>
+                            </div>
 
                             <CardContent className="space-y-5">
                                 <div className="space-y-4">
@@ -223,27 +229,13 @@ export default function TutorDetailsPage({ tutor }) {
                                     />
                                 </div>
 
-                                <Separator />
-
                                 <div className="flex items-center justify-between">
                                     <p className="text-sm text-muted-foreground">
                                         Slots Remaining
                                     </p>
                                     <span className="text-lg font-bold text-foreground">
                                         {totalSlot}
-                                        <span className="text-sm font-normal text-muted-foreground ml-1">
-                                            sessions
-                                        </span>
                                     </span>
-                                </div>
-
-                                <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
-                                    <div
-                                        className="h-full rounded-full bg-primary transition-all"
-                                        style={{
-                                            width: `${Math.min(100, ((10 - (totalSlot ?? 0)) / 10) * 100)}%`,
-                                        }}
-                                    />
                                 </div>
 
                                 <Button
@@ -255,32 +247,6 @@ export default function TutorDetailsPage({ tutor }) {
                                 >
                                     Book Session Now
                                 </Button>
-
-                                <p className="text-center text-xs text-muted-foreground">
-                                    🔒 Secure payment · Instant confirmation
-                                </p>
-                            </CardContent>
-                        </Card>
-
-                        {/* Quick stat card */}
-                        <Card className="shadow-sm">
-                            <CardContent className="pt-5 grid grid-cols-2 divide-x text-center">
-                                <div className="pr-4">
-                                    <p className="text-xs text-muted-foreground mb-1">
-                                        Teaching Mode
-                                    </p>
-                                    <p className="font-semibold text-sm">
-                                        {teachingMode}
-                                    </p>
-                                </div>
-                                <div className="pl-4">
-                                    <p className="text-xs text-muted-foreground mb-1">
-                                        Response Time
-                                    </p>
-                                    <p className="font-semibold text-sm text-green-600">
-                                        ≤ 2 hours
-                                    </p>
-                                </div>
                             </CardContent>
                         </Card>
                     </div>
