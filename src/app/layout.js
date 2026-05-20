@@ -22,7 +22,7 @@ const dmsans = DM_Sans({
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en" className="scroll-smooth" suppressHydrationWarning>
+		<html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
 			<body className={dmsans.className}>
 				<ThemeProvider
 					attribute="class"
