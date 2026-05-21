@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ModeToggle } from "../ModeToggle";
+import { ModeToggle } from "./ModeToggle";
 import NavLink from "./NavLink";
 import { authClient } from "@/lib/auth-client";
 import { Spinner } from "../ui/spinner";

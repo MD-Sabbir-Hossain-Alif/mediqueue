@@ -2,7 +2,7 @@ import TutorCard from "@/components/Tutors/TutorCard";
 import React from "react";
 
 const page = async () => {
-    const res = await fetch("http://localhost:5000/tutors");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/tutors`);
     const tutors = await res.json();
     // console.log(tutors);
     return (

@@ -13,7 +13,6 @@ import {
     FaBookOpen,
     FaUsers,
 } from "react-icons/fa6";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -42,7 +41,7 @@ export default function TutorDetailsPage({ tutor }) {
     } = tutor;
 
     return (
-        <div className="min-h-screen bg-background pt-10">
+        <div className="min-h-screen bg-background">
             {/* ── Hero Banner ── */}
             <div className="relative bg-linear-to-br from-primary/15 via-primary/5 to-secondary/20 pt-8 pb-18 sm:pb-24 overflow-hidden">
                 {/* decorative blobs */}

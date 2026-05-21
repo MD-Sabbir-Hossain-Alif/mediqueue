@@ -4,7 +4,7 @@ setServers(["1.1.1.1", "8.8.8.8"]);
 
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/Home/theme-provider";
 import Navbar from "@/components/Home/Navbar";
 import { Toaster } from "sonner";
 

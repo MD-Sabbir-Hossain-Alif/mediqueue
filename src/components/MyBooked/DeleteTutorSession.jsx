@@ -1,0 +1,80 @@
+import { Trash2, Trash2Icon } from "lucide-react";
+import { Button } from "../ui/button";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogMedia,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { redirect } from "next/navigation";
+
+const DeleteTutorSession = ({ tutor }) => {
+    console.log(tutor._id);
+    const handleDelete = async () => {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_API}/booked/${tutor._id}`,
+            {
+                method: "DELETE",
+            },
+        );
+        const data = await res.json();
+        // console.log(data);
+        // console.log("clicked");
+        if (data) {
+            redirect("/my-booked-sessions");
+        }
+    };
+    return (
+        <AlertDialog>
+            <AlertDialogTrigger asChild>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-destructive hover:bg-destructive/10 hover:text-destructive cursor-pointer"
+                >
+                    <Trash2 className="w-4 h-4" />
+                </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent size="sm">
+                <AlertDialogHeader>
+                    <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
+                        <Trash2Icon />
+                    </AlertDialogMedia>
+                    <AlertDialogTitle className="text-2xl">
+                        Delete tutor session?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                        This action will permanently delete this{" "}
+                        <span className="text-red-500 font-semibold">
+                            {tutor.tutorName}
+                        </span>{" "}
+                        session. Once deleted, the session cannot be restored.
+                    </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogCancel
+                        variant="outline"
+                        className="cursor-pointer"
+                    >
+                        Cancel
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                        variant="destructive"
+                        onClick={handleDelete}
+                        className="cursor-pointer"
+                    >
+                        Delete
+                    </AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
+    );
+};
+
+export default DeleteTutorSession;

@@ -6,11 +6,11 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Link from "next/link";
-import UpdateTutor from "./UpdateTutor";
-import DeleteTutor from "./DeleteTutor";
+import DeleteTutorSession from "./DeleteTutorSession";
 
-const MyTutors = ({ myTutors }) => {
-    const tutors = myTutors || [];
+const MyBooked = ({ myBooked }) => {
+    const tutors = myBooked || [];
+    console.log(tutors);
     return (
         <>
             {tutors.length > 0 ? (
@@ -18,10 +18,10 @@ const MyTutors = ({ myTutors }) => {
                     {/* Header */}
                     <div className="flex items-center justify-between px-1 py-5">
                         <h2 className="text-2xl font-semibold text-foreground">
-                            My Tutors
+                            My Booked Tutors Sessions
                         </h2>
                         <p className="bg-primary text-primary-foreground px-4 py-1.5">
-                            Total: {tutors.length}
+                            Total Sessions: {tutors.length}
                         </p>
                     </div>
 
@@ -98,10 +98,9 @@ const MyTutors = ({ myTutors }) => {
 
                                         {/* Actions */}
                                         <div className="flex items-center gap-2">
-                                            <UpdateTutor tutor={tutor} />
-                                            <DeleteTutor
+                                            <DeleteTutorSession
                                                 tutor={tutor}
-                                            ></DeleteTutor>
+                                            ></DeleteTutorSession>
                                         </div>
                                     </div>
                                 </CardContent>
@@ -116,17 +115,17 @@ const MyTutors = ({ myTutors }) => {
                             <User className="w-10 h-10 text-primary" />
                         </div>
                         <h3 className="text-2xl font-semibold text-foreground mb-2">
-                            No Tutors Found
+                            No Tutors Sessions Found
                         </h3>
                         <p className="text-muted-foreground mb-8">
-                            Start by adding your first tutor
+                            Start by adding your first tutor session
                         </p>
-                        <Link href="/add-tutor">
+                        <Link href="/tutors">
                             <Button
                                 className="hover-primary cursor-pointer"
                                 size="lg"
                             >
-                                Add New Tutor
+                                Add New Tutor Session
                             </Button>
                         </Link>
                     </div>
@@ -136,4 +135,4 @@ const MyTutors = ({ myTutors }) => {
     );
 };
 
-export default MyTutors;
+export default MyBooked;

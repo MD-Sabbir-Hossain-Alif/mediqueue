@@ -1,12 +1,22 @@
-import React from "react";
+import MyBooked from "@/components/MyBooked/MyBooked";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-const page = () => {
+const page = async () => {
+    const { user } = await auth.api.getSession({
+        headers: await headers(),
+    });
+    // console.log(user);
+    const userId = user?.id;
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/booked`);
+    const data = await res.json();
+
+    const myBooked = data.filter((booked) => booked.studentId === userId);
+    // console.log(myBooked);
     return (
         <div>
-            <h1 className="text-2xl font-bold">My Booked Sessions</h1>
-            <p className="mt-4">
-                This is where you can view your booked sessions.
-            </p>
+            <MyBooked myBooked={myBooked} />
         </div>
     );
 };
