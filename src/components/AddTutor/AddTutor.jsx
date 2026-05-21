@@ -158,7 +158,7 @@ const AddTutor = () => {
     };
 
     return (
-        <div className="min-h-screen bg-background py-12 px-4">
+        <div className="min-h-[90vh] bg-background py-12 px-4">
             <div className="max-w-3xl mx-auto">
                 <Card className="shadow-xl">
                     <CardHeader className="text-center">
@@ -277,7 +277,7 @@ const AddTutor = () => {
                                                 value={formData.hourlyFee}
                                                 onChange={handleChange}
                                                 type="number"
-                                                placeholder="880"
+                                                placeholder="900"
                                             />
                                             <FormInput
                                                 label="Total Slots *"
@@ -358,7 +358,7 @@ const AddTutor = () => {
                                 </FieldGroup>
                             </form>
                         ) : (
-                            <div className="text-center py-12">
+                            <div className="text-center">
                                 <div className="text-6xl mb-6">🎉</div>
                                 <h2 className="text-2xl font-semibold text-green-600 mb-2">
                                     Registration Successful!

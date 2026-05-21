@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import BookedModal from "./BookedModal";
 
 export default function TutorDetailsPage({ tutor }) {
     const {
@@ -41,14 +42,14 @@ export default function TutorDetailsPage({ tutor }) {
     } = tutor;
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-background pt-10">
             {/* ── Hero Banner ── */}
             <div className="relative bg-linear-to-br from-primary/15 via-primary/5 to-secondary/20 pt-8 pb-18 sm:pb-24 overflow-hidden">
                 {/* decorative blobs */}
                 <div className="pointer-events-none absolute -top-20 -right-20 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
                 <div className="pointer-events-none absolute bottom-0 -left-16 w-72 h-72 rounded-full bg-secondary/20 blur-2xl" />
 
-                <div className="container mx-auto flex justify-between items-center flex-wrap px-4 sm:px-6 relative z-10">
+                <div className="container mx-auto px-4 sm:px-6 relative z-10">
                     <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-center sm:items-end">
                         {/* ── Avatar ── */}
                         <div className="shrink-0">
@@ -65,15 +66,19 @@ export default function TutorDetailsPage({ tutor }) {
                         </div>
 
                         {/* ── Info right of avatar ── */}
-                        <div className="flex-1 text-center sm:text-left pb-2 space-y-3">
+                        <div className="flex-1 text-center sm:text-left space-y-1">
                             {/* Name */}
                             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-tight">
                                 {tutorName}
                             </h1>
 
+                            {/* Subject */}
+                            <p className="text-sm sm:text-base text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
+                                📚 {subjectCategory}
+                            </p>
                             {/* Institution */}
                             <p className="text-sm sm:text-base text-muted-foreground flex items-center justify-center sm:justify-start gap-1.5">
-                                <FaGraduationCap className="text-primary shrink-0" />
+                                🎓
                                 {institution}
                             </p>
 
@@ -105,14 +110,6 @@ export default function TutorDetailsPage({ tutor }) {
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <Badge
-                            variant="default"
-                            className="text-3xl px-12 py-8 rounded-none rounded-bl-4xl rounded-tr-4xl uppercase"
-                        >
-                            {subjectCategory}
-                        </Badge>
                     </div>
                 </div>
             </div>
@@ -238,15 +235,7 @@ export default function TutorDetailsPage({ tutor }) {
                                     </span>
                                 </div>
 
-                                <Button
-                                    size="lg"
-                                    className="w-full text-base font-semibold py-6"
-                                    onClick={() =>
-                                        alert("Booking modal will open here")
-                                    }
-                                >
-                                    Book Session Now
-                                </Button>
+                                <BookedModal tutor={tutor}></BookedModal>
                             </CardContent>
                         </Card>
                     </div>
