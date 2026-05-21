@@ -75,10 +75,10 @@ function DatePickerField({ label, field, value, onChange }) {
     );
 }
 
-export default function TutorRegistrationForm() {
+const AddTutor = () => {
     const { data: session } = authClient.useSession();
     const user = session?.user;
-    console.log("Current UserId:", user?.id);
+    // console.log("Current UserId:", user?.id);
 
     const [formData, setFormData] = useState({
         userId: user?.id,
@@ -130,7 +130,7 @@ export default function TutorRegistrationForm() {
                 ? formData.sessionEndDate.toISOString().split("T")[0]
                 : null,
         };
-        console.log("Submitting Tutor Data:", formattedData);
+        // console.log("Submitting Tutor Data:", formattedData);
 
         setIsSubmitting(true);
 
@@ -147,7 +147,7 @@ export default function TutorRegistrationForm() {
         const data = await res.json();
 
         await new Promise((resolve) => setTimeout(resolve, 1200));
-        console.log("Tutor Data Submitted:", data);
+        // console.log("Tutor Data Submitted:", data);
 
         toast.success("Tutor profile created successfully!", {
             description: "Your details have been saved to the database.",
@@ -380,4 +380,6 @@ export default function TutorRegistrationForm() {
             </div>
         </div>
     );
-}
+};
+
+export default AddTutor;
