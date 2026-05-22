@@ -211,13 +211,8 @@ export default function TutorDetailsPage({ tutor }) {
                                     />
                                     <DetailRow
                                         icon={<FaCalendar />}
-                                        label="Session Start"
-                                        value={`${sessionStartDate}`}
-                                    />
-                                    <DetailRow
-                                        icon={<FaCalendar />}
-                                        label="Session Last Date"
-                                        value={`${sessionEndDate}`}
+                                        label="Session Start/End Date"
+                                        value={`${sessionStartDate} / ${sessionEndDate}`}
                                     />
                                 </div>
 

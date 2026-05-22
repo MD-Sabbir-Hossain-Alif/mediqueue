@@ -31,12 +31,11 @@ export default function TutorCard({ tutor }) {
     return (
         <Card className="group overflow-hidden border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="px-5">
-                <div className="relative max-h-88 h-full w-full overflow-hidden rounded-2xl">
+                <div className="relative w-full aspect-square overflow-hidden rounded-2xl">
                     <Image
                         src={photo}
                         alt={tutorName}
-                        width={500}
-                        height={350}
+                        fill
                         loading="eager"
                         className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
@@ -63,7 +62,7 @@ export default function TutorCard({ tutor }) {
                 </div>
             </CardHeader>
 
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
                 <div>
                     <h3 className="text-xl font-semibold text-foreground">
                         {tutorName}

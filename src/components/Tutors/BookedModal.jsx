@@ -15,6 +15,7 @@ import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -67,13 +68,14 @@ const BookedModal = ({ tutor }) => {
         );
 
         const resData = await res.json();
-        console.log("API Response:", resData);
+        // console.log("API Response:", resData);
 
         if (res.ok) {
             toast.success("Session booked successfully!");
         } else {
             toast.error("Failed to book session. Please try again.");
         }
+        redirect(`/tutors/:${user._id}`);
     };
 
     return (

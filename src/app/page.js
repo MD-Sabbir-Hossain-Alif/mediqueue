@@ -1,17 +1,15 @@
 import Banner from "@/components/Home/Banner";
-import Fetured from "@/components/Home/Fetured";
+import FeturedApiCall from "@/components/Home/FeturedApiCall";
 import Testimonials from "@/components/Home/Testimonials";
 import Welcome from "@/components/Home/Welcome";
 
-export default async function Home() {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/featured`);
-	const tutors = await res.json();
-	// console.log(tutors);
+export default function Home() {
+
 	return (
 		<>
 			<Banner />
 			<Welcome />
-			<Fetured tutors={tutors} />
+			<FeturedApiCall />
 			<Testimonials />
 		</>
 	);

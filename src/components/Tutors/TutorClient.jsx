@@ -34,18 +34,18 @@ const TutorClient = ({ tutors }) => {
 
     return (
         <>
-            <div className="text-center my-10">
+            <div className="text-center">
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground">
                     Our Best Tutors
                 </h1>
-                <p className="text-muted-foreground mt-3 text-lg">
+                <p className="text-muted-foreground mt-3">
                     Find experienced tutors for Class 6 to 12, SSC, HSC &
                     Medical Admission
                 </p>
             </div>
 
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto mb-10 px-4">
+            <div className="max-w-2xl mx-auto mb-5 px-4">
                 <div className="relative group">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
                         <Search className="w-5 h-5" />
