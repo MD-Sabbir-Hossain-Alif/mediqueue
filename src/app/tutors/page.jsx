@@ -1,5 +1,4 @@
-import TutorCard from "@/components/Tutors/TutorCard";
-import React from "react";
+import TutorClient from "@/components/Tutors/TutorClient";
 
 const page = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/tutors`);
@@ -7,18 +6,7 @@ const page = async () => {
     // console.log(tutors);
     return (
         <div>
-            <div className="text-center my-8">
-                <h1 className="text-5xl font-bold ">Our Best Tutors</h1>
-                <p className="text-gray-500 mt-2">
-                    Meet our experienced and dedicated tutors who are here to
-                    help you succeed.
-                </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 p-6 md:px-12">
-                {tutors.map((tutor) => (
-                    <TutorCard key={tutor._id} tutor={tutor} />
-                ))}
-            </div>
+            <TutorClient tutors={tutors} />
         </div>
     );
 };

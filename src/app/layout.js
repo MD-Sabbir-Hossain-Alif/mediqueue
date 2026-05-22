@@ -7,6 +7,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/Home/theme-provider";
 import Navbar from "@/components/Home/Navbar";
 import { Toaster } from "sonner";
+import Footer from "@/components/Home/Footer";
 
 export const metadata = {
 	title: " MediQueue - Tutor Booking System",
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
 					<main className="container mx-auto min-h-full flex flex-col">
 						{children}
 					</main>
+					<Footer />
 					<Toaster position="top-center" />
 				</ThemeProvider>
 			</body>
