@@ -51,12 +51,17 @@ const BookedModal = ({ tutor }) => {
         };
         // console.log(bookedData);
 
+        const { data: tokenData } = await authClient.token();
+
         // Your API call or Server Action
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_API}/booked`,
             {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${tokenData?.token}`,
+                },
                 body: JSON.stringify(bookedData),
             },
         );

@@ -152,11 +152,17 @@ const UpdateTutor = ({ tutor }) => {
         // console.log(formattedData);
         setIsSubmitting(true);
 
+        const { data: tokenData } = await authClient.token();
+        // console.log(tokenData);
+
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_API}/tutors/${tutor._id}`,
             {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${tokenData?.token}`,
+                },
                 body: JSON.stringify(formattedData),
             },
         );

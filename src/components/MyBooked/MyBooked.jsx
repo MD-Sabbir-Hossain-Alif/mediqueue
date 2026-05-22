@@ -10,7 +10,7 @@ import DeleteTutorSession from "./DeleteTutorSession";
 
 const MyBooked = ({ myBooked }) => {
     const tutors = myBooked || [];
-    console.log(tutors);
+    // console.log(tutors);
     return (
         <>
             {tutors.length > 0 ? (

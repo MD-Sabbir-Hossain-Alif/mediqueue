@@ -6,7 +6,6 @@ import {
     FaLocationDot,
     FaAward,
     FaStar,
-    FaGraduationCap,
     FaShieldHalved,
     FaBolt,
     FaChalkboardUser,
@@ -41,7 +40,7 @@ export default function TutorDetailsPage({ tutor }) {
     } = tutor;
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-[90vh] bg-background">
             {/* ── Hero Banner ── */}
             <div className="relative bg-linear-to-br from-primary/15 via-primary/5 to-secondary/20 pt-8 pb-18 sm:pb-24 overflow-hidden">
                 {/* decorative blobs */}

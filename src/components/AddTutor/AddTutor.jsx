@@ -83,7 +83,7 @@ const AddTutor = () => {
     const [formData, setFormData] = useState({
         userId: user?.id,
         tutorName: "",
-        photo: "",
+        photo: "https://i.ibb.co.com/hJKMvH57/sabbir.webp",
         subjectCategory: "",
         availableDays: "Sun - Thu",
         availableTimeSlot: "5:00 PM - 8:00 PM",
@@ -134,12 +134,16 @@ const AddTutor = () => {
 
         setIsSubmitting(true);
 
+        const { data: tokenData } = await authClient.token();
+        // console.log(tokenData);
+
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_API}/tutors`,
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    authorization: `Bearer ${tokenData?.token}`,
                 },
                 body: JSON.stringify(formattedData),
             },

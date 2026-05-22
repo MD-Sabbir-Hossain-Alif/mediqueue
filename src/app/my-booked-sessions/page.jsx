@@ -9,7 +9,15 @@ const page = async () => {
     // console.log(user);
     const userId = user?.id;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/booked`);
+    const { token } = await auth.api.getToken({
+        headers: await headers(),
+    });
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/booked`, {
+        headers: {
+            authorization: `Bearer ${token}`,
+        },
+    });
     const data = await res.json();
 
     const myBooked = data.filter((booked) => booked.studentId === userId);
