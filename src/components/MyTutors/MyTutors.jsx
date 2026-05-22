@@ -14,9 +14,9 @@ const MyTutors = ({ myTutors }) => {
     return (
         <>
             {tutors.length > 0 ? (
-                <div className="space-y-4 px-10">
+                <div className="space-y-4 p-2 sm:p-4 md:p-8">
                     {/* Header */}
-                    <div className="flex items-center justify-between px-1 py-5">
+                    <div className="flex items-center justify-between">
                         <h2 className="text-2xl font-semibold text-foreground">
                             My Tutors
                         </h2>
@@ -50,7 +50,7 @@ const MyTutors = ({ myTutors }) => {
                                                 <p className="font-semibold text-foreground text-lg">
                                                     {tutor.tutorName}
                                                 </p>
-                                                <p className="text-sm text-muted-foreground flex items-center gap-1">
+                                                <p className="text-lg text-muted-foreground flex items-center gap-1">
                                                     📚 {tutor.subjectCategory}
                                                 </p>
                                             </div>

@@ -45,7 +45,7 @@ const DeleteTutor = ({ tutor }) => {
                     size="icon"
                     className="text-destructive hover:bg-destructive/10 hover:text-destructive cursor-pointer"
                 >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-5 h-5" />
                 </Button>
             </AlertDialogTrigger>
             <AlertDialogContent size="sm">

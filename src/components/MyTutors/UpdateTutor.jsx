@@ -114,6 +114,19 @@ const UpdateTutor = ({ tutor }) => {
         description,
     });
 
+    const subjects = [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "English",
+        "Computer Science",
+        "Accounting",
+        "Economics",
+        "History",
+        "Geography",
+    ];
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -197,7 +210,7 @@ const UpdateTutor = ({ tutor }) => {
                     size="icon"
                     className="text-primary hover:bg-primary/10 hover:text-primary cursor-pointer"
                 >
-                    <Edit2 className="w-4 h-4" />
+                    <Edit2 className="w-5 h-5" />
                 </Button>
             </DialogTrigger>
 
@@ -238,16 +251,34 @@ const UpdateTutor = ({ tutor }) => {
                             {/* Subject & Teaching Mode */}
                             <FieldSet>
                                 <FieldGroup className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                    <FieldSet>
-                                        <FormInput
-                                            label="Subject *"
-                                            field="subjectCategory"
+                                    <Field>
+                                        <FieldLabel className="font-semibold">
+                                            Subject *
+                                        </FieldLabel>
+                                        <Select
                                             value={formData.subjectCategory}
-                                            onChange={handleChange}
-                                            placeholder="Chemistry, Math etc."
-                                            required
-                                        />
-                                    </FieldSet>
+                                            onValueChange={(v) =>
+                                                handleChange(
+                                                    "subjectCategory",
+                                                    v,
+                                                )
+                                            }
+                                        >
+                                            <SelectTrigger>
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {subjects.map((mode) => (
+                                                    <SelectItem
+                                                        key={mode}
+                                                        value={mode}
+                                                    >
+                                                        {mode}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </Field>
 
                                     <Field>
                                         <FieldLabel className="font-semibold">

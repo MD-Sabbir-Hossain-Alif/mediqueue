@@ -98,6 +98,19 @@ const AddTutor = () => {
         description: "",
     });
 
+    const subjects = [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "English",
+        "Computer Science",
+        "Accounting",
+        "Economics",
+        "History",
+        "Geography",
+    ];
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -203,18 +216,42 @@ const AddTutor = () => {
                                     {/* Subject & Teaching Mode */}
                                     <FieldSet>
                                         <FieldGroup className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                            <FieldSet>
-                                                <FormInput
-                                                    label="Subject *"
-                                                    field="subjectCategory"
+                                            <Field>
+                                                <FieldLabel className="font-semibold">
+                                                    Subject *
+                                                </FieldLabel>
+                                                <Select
                                                     value={
                                                         formData.subjectCategory
                                                     }
-                                                    onChange={handleChange}
-                                                    placeholder="Chemistry, Math etc."
-                                                    required
-                                                />
-                                            </FieldSet>
+                                                    onValueChange={(value) =>
+                                                        handleChange(
+                                                            "subjectCategory",
+                                                            value,
+                                                        )
+                                                    }
+                                                >
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select subject" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {subjects.map(
+                                                            (subject) => (
+                                                                <SelectItem
+                                                                    key={
+                                                                        subject
+                                                                    }
+                                                                    value={
+                                                                        subject
+                                                                    }
+                                                                >
+                                                                    {subject}
+                                                                </SelectItem>
+                                                            ),
+                                                        )}
+                                                    </SelectContent>
+                                                </Select>
+                                            </Field>
 
                                             <Field>
                                                 <FieldLabel className="font-semibold">
@@ -300,7 +337,7 @@ const AddTutor = () => {
                                                 onChange={handleChange}
                                             />
                                             <DatePickerField
-                                                label="Session End Date"
+                                                label="Session End Date *"
                                                 field="sessionEndDate"
                                                 value={formData.sessionEndDate}
                                                 onChange={handleChange}

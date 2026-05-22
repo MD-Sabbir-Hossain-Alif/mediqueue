@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { FaCalendar, FaClock, FaLocationDot } from "react-icons/fa6";
+import {
+    FaCalendar,
+    FaClock,
+    FaGraduationCap,
+    FaLocationDot,
+} from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -19,7 +24,7 @@ export default function TutorCard({ tutor }) {
         tutorName,
         subjectCategory,
         teachingMode,
-        location,
+        institution,
         availableDays,
         availableTimeSlot,
     } = tutor;
@@ -38,12 +43,12 @@ export default function TutorCard({ tutor }) {
                     <div className="absolute top-3 right-3">
                         <Badge
                             variant="secondary"
-                            className={`bg-[#60a5fa] text-black font-medium py-2 ${
+                            className={`bg-[#60a5fa] font-medium py-2 ${
                                 teachingMode === "Online"
-                                    ? "bg-[#34d399]"
-                                    : teachingMode === "Offline"
-                                      ? ""
-                                      : "bg-[#22d3ee]"
+                                    ? "bg-secondary text-secondary-foreground hover:bg-secondary"
+                                    : teachingMode === "Both"
+                                      ? "bg-primary text-primary-foreground hover:bg-primary"
+                                      : "bg-accent text-accent-foreground hover:bg-accent"
                             }`}
                         >
                             {teachingMode}
@@ -65,8 +70,8 @@ export default function TutorCard({ tutor }) {
                     </h3>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <FaLocationDot className="w-4 h-4" />
-                    <span>{location}</span>
+                    <FaGraduationCap className="w-4 h-4" />
+                    <span>{institution}</span>
                 </div>
 
                 <div className="flex justify-between text-sm">

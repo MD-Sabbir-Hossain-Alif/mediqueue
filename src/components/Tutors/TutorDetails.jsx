@@ -9,7 +9,6 @@ import {
     FaShieldHalved,
     FaBolt,
     FaChalkboardUser,
-    FaBookOpen,
     FaUsers,
 } from "react-icons/fa6";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -97,14 +96,7 @@ export default function TutorDetailsPage({ tutor }) {
                                         <FaChalkboardUser className="text-primary" />
                                     }
                                     value={experience}
-                                    label="Experience"
-                                />
-                                <StatPill
-                                    icon={
-                                        <FaBookOpen className="text-primary" />
-                                    }
-                                    value={totalSlot}
-                                    label="Slots Left"
+                                    label=""
                                 />
                             </div>
                         </div>
@@ -219,8 +211,13 @@ export default function TutorDetailsPage({ tutor }) {
                                     />
                                     <DetailRow
                                         icon={<FaCalendar />}
-                                        label="Session Period"
-                                        value={`${sessionStartDate} — ${sessionEndDate}`}
+                                        label="Session Start"
+                                        value={`${sessionStartDate}`}
+                                    />
+                                    <DetailRow
+                                        icon={<FaCalendar />}
+                                        label="Session Last Date"
+                                        value={`${sessionEndDate}`}
                                     />
                                 </div>
 

@@ -14,11 +14,11 @@ const MyBooked = ({ myBooked }) => {
     return (
         <>
             {tutors.length > 0 ? (
-                <div className="space-y-4 px-10">
+                <div className="space-y-4 p-2 sm:p-4 md:p-8">
                     {/* Header */}
-                    <div className="flex items-center justify-between px-1 py-5">
+                    <div className="flex items-center justify-between">
                         <h2 className="text-2xl font-semibold text-foreground">
-                            My Booked Tutors Sessions
+                            My Booked Sessions
                         </h2>
                         <p className="bg-primary text-primary-foreground px-4 py-1.5">
                             Total Sessions: {tutors.length}
@@ -50,7 +50,7 @@ const MyBooked = ({ myBooked }) => {
                                                 <p className="font-semibold text-foreground text-lg">
                                                     {tutor.tutorName}
                                                 </p>
-                                                <p className="text-sm text-muted-foreground flex items-center gap-1">
+                                                <p className="text-lg text-muted-foreground flex items-center gap-1">
                                                     📚 {tutor.subjectCategory}
                                                 </p>
                                             </div>
@@ -59,10 +59,11 @@ const MyBooked = ({ myBooked }) => {
                                         {/* Institution */}
                                         <div className="min-w-40">
                                             <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                                                Institution
+                                                Days/Time
                                             </p>
                                             <p className="text-foreground font-medium">
-                                                {tutor.institution}
+                                                {tutor.availableDays}/
+                                                {tutor.availableTimeSlot}
                                             </p>
                                         </div>
 

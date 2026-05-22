@@ -114,11 +114,11 @@ const Banner = () => {
             </Swiper>
 
             {/* Navigation Buttons - Updated with Theme Colors */}
-            <Button className="swiper-button-prev absolute left-4 md:left-8 top-1/2 z-20 bg-transparent text-[#0077b6] p-3 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12 border border-white/50">
+            <Button className="swiper-button-prev absolute left-4 md:left-8 top-1/2 z-20 bg-transparent text-[#0077b6] p-3 rounded-full backdrop-blur-md transition-all hidden! md:block! w-12 h-12 border border-white/50 hover:border-[#72cfff]">
                 <SlArrowLeft />
             </Button>
 
-            <Button className="swiper-button-next absolute right-4 md:right-8 top-1/2 z-20 bg-transparent text-[#0077b6] p-3 rounded-full backdrop-blur-md transition-all hidden md:flex items-center justify-center w-12 h-12 border border-white/50">
+            <Button className="swiper-button-next absolute right-4 md:right-8 top-1/2 z-20 bg-transparent text-[#0077b6] p-3 rounded-full backdrop-blur-md transition-all hidden! md:block! w-12 h-12 border border-white/50 hover:border-[#72cfff]">
                 <SlArrowRight />
             </Button>
 

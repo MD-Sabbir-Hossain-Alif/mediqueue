@@ -13,7 +13,7 @@ import {
 
 const Footer = () => {
     return (
-        <footer className="bg-muted/50 border-t border-border pt-8 md:pt-12">
+        <footer className="container mx-auto bg-muted/50 border-t border-border pt-8 md:pt-12">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 pb-10">
                     {/* Logo & Description */}
