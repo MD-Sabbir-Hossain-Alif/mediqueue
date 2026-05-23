@@ -108,8 +108,8 @@ const UpdateTutor = ({ tutor }) => {
         availableTimeSlot,
         hourlyFee,
         totalSlot,
-        sessionStartDate: new Date(sessionStartDate),
-        sessionEndDate: new Date(sessionEndDate),
+        sessionStartDate,
+        sessionEndDate,
         institution,
         experience,
         location,
@@ -158,13 +158,8 @@ const UpdateTutor = ({ tutor }) => {
             ...formData,
             hourlyFee: Number(formData.hourlyFee),
             totalSlot: Number(formData.totalSlot),
-            sessionStartDate: formData.sessionStartDate
-                ? formData.sessionStartDate.toISOString().split("T")[0]
-                : null,
-
-            sessionEndDate: formData.sessionEndDate
-                ? formData.sessionEndDate.toISOString().split("T")[0]
-                : null,
+            sessionStartDate: new Date(formData.sessionStartDate),
+            sessionEndDate: new Date(formData.sessionEndDate),
         };
 
         // console.log(formattedData);

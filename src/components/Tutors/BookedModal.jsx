@@ -108,7 +108,7 @@ const BookedModal = ({ tutor }) => {
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="sm:max-w-sm dark:bg-black/80! lg:dark:bg-black/30!">
+            <DialogContent className="sm:max-w-sm dark:bg-black/70!">
                 <DialogHeader className="text-center">
                     <DialogTitle>Book Session Now</DialogTitle>
                     <DialogDescription>

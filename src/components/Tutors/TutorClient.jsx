@@ -52,6 +52,8 @@ const TutorClient = ({ tutors: initialTutors }) => {
         }
 
         searchTutors(value, startDate, endDate);
+        console.log("start", tutors, startDate, endDate);
+        // console.log(initialTutors);
     };
 
     const handleDateChange = (start, end) => {
@@ -64,7 +66,12 @@ const TutorClient = ({ tutors: initialTutors }) => {
         }
 
         searchTutors(search, start, end);
+
+        console.log("end", tutors, start, end);
+        // console.log(initialTutors);
     };
+
+    console.log("search", tutors);
 
     // Scroll + Filter Animation
     const transitions = useTransition(tutors, {
@@ -81,16 +88,16 @@ const TutorClient = ({ tutors: initialTutors }) => {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
                     Our Best Tutors
                 </h1>
-                <p className="text-sm sm:text-base text-muted-foreground mt-3">
+                <p className="text-sm sm:text-base text-muted-foreground">
                     Find experienced tutors for Class 6 to 12, SSC, HSC &
                     Medical Admission
                 </p>
             </div>
 
             {/* Search Bar */}
-            <div className="mb-5 px-6 md:px-12">
-                <div className="max-w-7xl mx-auto grid grid-cols-1  lg:grid-cols-3 md:gap-10 items-center px-4">
-                    <div className="relative w-full md:col-span-1">
+            <div className="mb-5 px-6 md:px-12 ">
+                <div className="max-w-7xl mx-auto flex justify-evenly items-center gap-6 md:gap-10 md:px-4">
+                    <div className="relative w-full">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
                             <Search className="w-5 h-5" />
                         </div>
@@ -132,6 +139,21 @@ const TutorClient = ({ tutors: initialTutors }) => {
                             }
                             className="border p-2 rounded-xl"
                         />
+                    </div>
+
+                    <div className="justify-end">
+                        <button
+                            onClick={() => {
+                                setSearch("");
+                                setStartDate("");
+                                setEndDate("");
+                                handleSearch("");
+                                handleDateChange("", "");
+                            }}
+                            className="px-5 py-2 rounded-xl border bg-background hover:bg-muted transition"
+                        >
+                            Reset
+                        </button>
                     </div>
                 </div>
             </div>

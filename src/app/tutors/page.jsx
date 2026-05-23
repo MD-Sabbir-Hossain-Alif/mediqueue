@@ -11,7 +11,7 @@ const page = async () => {
     const tutors = await res.json();
     // console.log(tutors);
     return (
-        <div className="my-4 md:my-10">
+        <div className="my-4 md:mb-10 md:mt-8">
             <TutorClient tutors={tutors} />
         </div>
     );

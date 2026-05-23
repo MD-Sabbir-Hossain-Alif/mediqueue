@@ -37,6 +37,8 @@ export default function TutorDetailsPage({ tutor }) {
         reviewCount = 47,
     } = tutor;
 
+    const startDate = new Date(sessionStartDate).toISOString().split("T")[0];
+    const endDate = new Date(sessionEndDate).toISOString().split("T")[0];
     const checkExpired = new Date() >= new Date(sessionEndDate);
     // console.log(sessionExpired);
 
@@ -214,7 +216,7 @@ export default function TutorDetailsPage({ tutor }) {
                                     <DetailRow
                                         icon={<FaCalendar />}
                                         label="Session Start/End Date"
-                                        value={`${sessionStartDate} / ${sessionEndDate}`}
+                                        value={`${startDate} / ${endDate}`}
                                     />
                                 </div>
 
