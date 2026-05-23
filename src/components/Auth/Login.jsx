@@ -110,7 +110,7 @@ const Login = () => {
             </div>
 
             {/* Right Form Panel */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
+            <div className="w-full lg:w-1/2 flex items-center justify-center ">
                 <div className="w-full max-w-md">
                     <Card className="dark:bg-black/30!">
                         <CardHeader className="text-center">

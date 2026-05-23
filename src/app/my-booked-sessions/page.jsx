@@ -2,6 +2,12 @@ import MyBooked from "@/components/MyBooked/MyBooked";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
+export const metadata = {
+    title: "MediQueue - My Booked Sessions",
+    description:
+        "Best website for student and tutor booking system almost free",
+};
+
 const page = async () => {
     const { user } = await auth.api.getSession({
         headers: await headers(),

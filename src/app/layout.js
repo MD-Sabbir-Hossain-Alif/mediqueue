@@ -10,7 +10,7 @@ import { Toaster } from "sonner";
 import Footer from "@/components/Home/Footer";
 
 export const metadata = {
-	title: " MediQueue - Tutor Booking System",
+	title: "MediQueue - Tutor Booking System",
 	description: "Best website for student and tutor booking system almost free",
 };
 

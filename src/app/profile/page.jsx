@@ -1,10 +1,16 @@
+import Profile from "@/components/Profile/profile";
 import React from "react";
+
+export const metadata = {
+    title: "MediQueue - Profile",
+    description:
+        "Best website for student and tutor booking system almost free",
+};
 
 const page = () => {
     return (
         <div>
-            <h1 className="text-2xl font-bold">Profile Page</h1>
-            <p className="mt-4">This is your profile page.</p>
+            <Profile />
         </div>
     );
 };

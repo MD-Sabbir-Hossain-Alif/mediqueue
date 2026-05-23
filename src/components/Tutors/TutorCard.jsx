@@ -81,7 +81,7 @@ export default function TutorCard({ tutor }) {
                 </div>
             </CardContent>
 
-            <CardFooter className="p-5 pt-0 bg-transparent">
+            <CardFooter className="sm:p-5 pt-0 bg-transparent">
                 <Link href={`/tutors/${_id}`} className="w-full">
                     <Button
                         className="w-full text-lg transition-all duration-300 font-medium py-6

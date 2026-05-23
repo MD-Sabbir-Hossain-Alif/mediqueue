@@ -14,14 +14,14 @@ const MyBooked = ({ myBooked }) => {
     return (
         <>
             {tutors.length > 0 ? (
-                <div className="space-y-4 p-2 sm:p-4 md:p-8">
+                <div className="space-y-4 p-4 sm:p-8">
                     {/* Header */}
                     <div className="flex items-center justify-between">
                         <h2 className="text-2xl font-semibold text-foreground">
-                            My Booked Sessions
+                            Booked Sessions
                         </h2>
-                        <p className="bg-primary text-primary-foreground px-4 py-1.5">
-                            Total Sessions: {tutors.length}
+                        <p className="bg-primary text-primary-foreground px-4 py-1.5 rounded-sm">
+                            Total: {tutors.length}
                         </p>
                     </div>
 
@@ -30,13 +30,13 @@ const MyBooked = ({ myBooked }) => {
                         {tutors.map((tutor) => (
                             <Card
                                 key={tutor._id}
-                                className="bg-card border border-border hover:border-primary/50 transition-all duration-200"
+                                className="bg-card border border-border hover:border-primary/50 transition-all duration-200 p-2 rounded-sm"
                             >
-                                <CardContent>
+                                <CardContent className="px-0">
                                     <div className="flex items-center justify-between flex-wrap gap-6">
                                         {/* Name & Subject */}
                                         <div className="flex items-center gap-4 min-w-64">
-                                            <Avatar className="w-12 h-12 sm:w-15 sm:h-15 border-2 border-background shadow-2xl ring-2 ring-primary/20">
+                                            <Avatar className="w-10 h-10 sm:w-13 sm:h-13 border-2 border-background shadow-2xl ring-2 ring-primary/20">
                                                 <AvatarImage
                                                     src={tutor.photo}
                                                     alt={tutor.tutorName}

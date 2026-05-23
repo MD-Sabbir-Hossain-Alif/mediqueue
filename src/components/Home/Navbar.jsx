@@ -25,7 +25,7 @@ const Navbar = () => {
 
     // console.log(session, isPending);
     return (
-        <nav className="container mx-auto sticky top-0 z-40 border-b border-separator bg-background/70 backdrop-blur-lg ">
+        <nav className=" sticky top-0 z-40 border-b border-separator bg-background/70 backdrop-blur-lg ">
             <div className="">
                 <header className="flex h-16 items-center justify-between px-6">
                     <div className="flex-1 flex items-center justify-start gap-3">
@@ -51,7 +51,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             <NavLink href="/my-booked-sessions">
-                                My Booked Sessions
+                                Booked Sessions
                             </NavLink>
                         </li>
                     </ul>
@@ -107,7 +107,7 @@ const Navbar = () => {
                                 <li>
                                     <NavLink href="/login">Login</NavLink>
                                 </li>
-                                <li>
+                                <li className="hidden sm:block">
                                     <NavLink href="/register">Register</NavLink>
                                 </li>
                             </>
@@ -128,14 +128,14 @@ const Navbar = () => {
                         {/* backdrop */}
                         {menuOpen && (
                             <div
-                                className="fixed inset-0 bg-black/30 md:hidden"
+                                className="fixed inset-0 bg-black/50 md:hidden"
                                 onClick={() => setMenuOpen(false)}
                             />
                         )}
 
                         {/* mobile menu */}
                         <div
-                            className={`fixed top-16 right-4 w-56 z-40 border border-accent rounded-lg bg-card shadow-lg p-4 transform transition-all duration-300 ease-in-out ${
+                            className={`fixed top-16 right-4 w-46 z-40 rounded-lg bg-card shadow-lg p-4 transform transition-all duration-300 ease-in-out ${
                                 menuOpen
                                     ? "translate-y-0 opacity-100 scale-100"
                                     : "-translate-y-5 opacity-0 scale-95 pointer-events-none"
@@ -160,8 +160,11 @@ const Navbar = () => {
                                 </li>
                                 <li onClick={() => setMenuOpen(false)}>
                                     <NavLink href="/my-booked-sessions">
-                                        My Booked Sessions
+                                        Booked Sessions
                                     </NavLink>
+                                </li>
+                                <li onClick={() => setMenuOpen(false)}>
+                                    <NavLink href="/register">Register</NavLink>
                                 </li>
                             </ul>
                         </div>

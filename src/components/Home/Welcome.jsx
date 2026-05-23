@@ -33,14 +33,14 @@ const Welcome = () => {
                         <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
                             <Link
                                 href="tutors"
-                                className="hover-primary flex items-center justify-center gap-3 bg-primary text-primary-foreground px-6 py-3 rounded-2xl font-semibold text-base sm:text-lg transition-all hover:shadow-lg hover:shadow-primary/30"
+                                className="hover-primary flex items-center justify-center gap-3 bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold text-base sm:text-lg transition-all hover:shadow-lg hover:shadow-primary/30"
                             >
                                 Find a Tutor
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
 
                             <Link href="add-tutor">
-                                <button className="w-full sm:w-auto flex items-center justify-center gap-3 border border-border hover:bg-muted px-6 py-3 rounded-2xl font-semibold text-base sm:text-lg transition-all cursor-pointer">
+                                <button className="w-full sm:w-auto flex items-center justify-center gap-3 border border-border hover:bg-muted px-6 py-2 rounded-lg font-semibold text-base sm:text-lg transition-all cursor-pointer">
                                     <Play className="w-5 h-5" />
                                     Become a Tutor
                                 </button>

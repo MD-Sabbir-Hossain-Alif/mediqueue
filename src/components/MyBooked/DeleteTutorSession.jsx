@@ -51,7 +51,7 @@ const DeleteTutorSession = ({ tutor }) => {
                     <Trash2 className="w-5 h-5" />
                 </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent size="sm" className="dark:bg-black/10!">
+            <AlertDialogContent size="sm" className="dark:bg-black/30!">
                 <AlertDialogHeader>
                     <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
                         <Trash2Icon />

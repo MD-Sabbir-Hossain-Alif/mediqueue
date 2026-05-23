@@ -293,14 +293,14 @@ const AddTutor = () => {
 
                                         <FieldGroup className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <FormInput
-                                                label="Available Days"
+                                                label="Available Days *"
                                                 field="availableDays"
                                                 value={formData.availableDays}
                                                 onChange={handleChange}
                                                 placeholder="Tue - Sat"
                                             />
                                             <FormInput
-                                                label="Time Slot"
+                                                label="Time Slot *"
                                                 field="availableTimeSlot"
                                                 value={
                                                     formData.availableTimeSlot

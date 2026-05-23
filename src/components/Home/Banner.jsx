@@ -99,7 +99,7 @@ const Banner = () => {
 
                                     {/* CTA Button - Using Primary Color */}
                                     <Link href="/tutors">
-                                        <Button className="mt-6 group flex items-center gap-3 bg-primary hover:bg-(--primary-hover)  font-semibold text-lg px-9 py-6 rounded-xl transition-all duration-300 hover:scale-105 cursor-pointer">
+                                        <Button className="mt-6 group flex items-center gap-3 bg-primary hover:bg-(--primary-hover)  font-semibold text-lg px-9 py-6 rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer">
                                             Find Your Tutor
                                             <span className="text-2xl transition-transform">
                                                 <FaArrowRightLong />

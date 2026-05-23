@@ -15,7 +15,7 @@ import { FaXTwitter } from "react-icons/fa6";
 const Footer = () => {
     return (
         <footer className="container mx-auto bg-muted/50 border-t border-border pt-8 md:pt-12">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 pb-10">
                     {/* Logo & Description */}
                     <div>
@@ -142,7 +142,7 @@ const Footer = () => {
                             </div>
                             <div className="flex items-center gap-3">
                                 <FaPhoneAlt className="text-primary" />
-                                <p>+880 17XX-XXXXXX</p>
+                                <p>+880 1300-386800</p>
                             </div>
                             <div className="flex items-center gap-3">
                                 <FaEnvelope className="text-primary" />

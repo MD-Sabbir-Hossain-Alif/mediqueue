@@ -2,6 +2,12 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import MyTutors from "@/components/MyTutors/MyTutors";
 
+export const metadata = {
+    title: "MediQueue - My Tutors",
+    description:
+        "Best website for student and tutor booking system almost free",
+};
+
 const page = async () => {
     const session = await auth.api.getSession({
         headers: await headers(),

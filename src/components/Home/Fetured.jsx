@@ -16,7 +16,7 @@ const Fetured = ({ tutors }) => {
 
     return (
         <section className="py-20 bg-background">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-10">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-secondary-foreground mb-4">
@@ -53,12 +53,22 @@ const Fetured = ({ tutors }) => {
                         Trusted by university & medical students from
                     </p>
 
-                    <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-75">
-                        <span className="text-2xl font-semibold">DU</span>
-                        <span className="text-2xl font-semibold">BUET</span>
-                        <span className="text-2xl font-semibold">DMC</span>
-                        <span className="text-2xl font-semibold">JU</span>
-                        <span className="text-2xl font-semibold">RMC</span>
+                    <div className="flex flex-wrap justify-center items-center gap-x-6 md:gap-x-12 gap-y-6 opacity-75">
+                        <span className="text-lg md:text-2xl font-semibold">
+                            DU
+                        </span>
+                        <span className="text-lg md:text-2xl font-semibold">
+                            BUET
+                        </span>
+                        <span className="text-lg md:text-2xl font-semibold">
+                            DMC
+                        </span>
+                        <span className="text-lg md:text-2xl font-semibold">
+                            JU
+                        </span>
+                        <span className="text-lg md:text-2xl font-semibold">
+                            RMC
+                        </span>
                     </div>
                 </div>
             </div>
