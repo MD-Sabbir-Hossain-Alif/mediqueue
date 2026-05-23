@@ -135,6 +135,8 @@ const AddTutor = () => {
 
         const formattedData = {
             ...formData,
+            hourlyFee: Number(formData.hourlyFee),
+            totalSlot: Number(formData.totalSlot),
             sessionStartDate: formData.sessionStartDate
                 ? formData.sessionStartDate.toISOString().split("T")[0]
                 : null,

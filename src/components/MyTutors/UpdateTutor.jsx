@@ -32,6 +32,8 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { CalendarIcon, Edit2 } from "lucide-react";
 import { format } from "date-fns";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 function FormInput({ label, field, value, onChange, ...props }) {
     return (
@@ -76,6 +78,7 @@ function DatePickerField({ label, field, value, onChange }) {
 }
 
 const UpdateTutor = ({ tutor }) => {
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     // console.log(tutor);
     const {
@@ -153,6 +156,8 @@ const UpdateTutor = ({ tutor }) => {
 
         const formattedData = {
             ...formData,
+            hourlyFee: Number(formData.hourlyFee),
+            totalSlot: Number(formData.totalSlot),
             sessionStartDate: formData.sessionStartDate
                 ? formData.sessionStartDate.toISOString().split("T")[0]
                 : null,
@@ -182,10 +187,12 @@ const UpdateTutor = ({ tutor }) => {
         const data = await res.json();
         await new Promise((resolve) => setTimeout(resolve, 1200));
 
-        toast.success("Tutor profile updated successfully!", {
-            description: "Your details have been updated in the database.",
-        });
-
+        if (data) {
+            toast.success("Tutor profile updated successfully!", {
+                description: "Your details have been updated in the database.",
+            });
+            router.refresh();
+        }
         if (!data) {
             toast.error("Tutor profile update failed!", {
                 description: "Please try again",

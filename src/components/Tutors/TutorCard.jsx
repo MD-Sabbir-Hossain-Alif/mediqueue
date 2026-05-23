@@ -27,6 +27,7 @@ export default function TutorCard({ tutor }) {
         institution,
         availableDays,
         availableTimeSlot,
+        totalSlot,
     } = tutor;
     return (
         <Card className="group overflow-hidden border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
@@ -92,7 +93,13 @@ export default function TutorCard({ tutor }) {
                                 bg-primary hover:bg-(--primary-hover) 
                                 cursor-pointer"
                     >
-                        Book Session
+                        {totalSlot === 0 ? (
+                            <span className="text-red-300 dark:text-red-800">
+                                No available slots left
+                            </span>
+                        ) : (
+                            "Book Session"
+                        )}
                     </Button>
                 </Link>
             </CardFooter>

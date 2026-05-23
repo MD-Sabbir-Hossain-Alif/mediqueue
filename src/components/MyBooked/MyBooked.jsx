@@ -2,11 +2,11 @@
 
 import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Link from "next/link";
 import DeleteTutorSession from "./DeleteTutorSession";
+import Canceled from "./Canceled";
 
 const MyBooked = ({ myBooked }) => {
     const tutors = myBooked || [];
@@ -47,11 +47,11 @@ const MyBooked = ({ myBooked }) => {
                                                 </AvatarFallback>
                                             </Avatar>
                                             <div>
-                                                <p className="font-semibold text-foreground text-lg">
-                                                    {tutor.tutorName}
+                                                <p className="text-muted-foreground text-xs uppercase tracking-widest mb-1">
+                                                    Tutor Name
                                                 </p>
-                                                <p className="text-lg text-muted-foreground flex items-center gap-1">
-                                                    📚 {tutor.subjectCategory}
+                                                <p className="text-lg font-semibold text-foreground flex items-center gap-1">
+                                                    {tutor.tutorName}
                                                 </p>
                                             </div>
                                         </div>
@@ -59,46 +59,44 @@ const MyBooked = ({ myBooked }) => {
                                         {/* Institution */}
                                         <div className="min-w-40">
                                             <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                                                Days/Time
+                                                Student Name
                                             </p>
                                             <p className="text-foreground font-medium">
-                                                {tutor.availableDays}/
-                                                {tutor.availableTimeSlot}
+                                                {tutor.studentName}
                                             </p>
                                         </div>
 
                                         {/* Teaching Mode */}
                                         <div className="min-w-25">
                                             <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                                                Online/Offline
+                                                Email
                                             </p>
-                                            <Badge
-                                                className={`font-medium ${
-                                                    tutor.teachingMode ===
-                                                    "Online"
-                                                        ? "bg-secondary text-secondary-foreground hover:bg-secondary"
-                                                        : tutor.teachingMode ===
-                                                            "Both"
-                                                          ? "bg-primary text-primary-foreground hover:bg-primary"
-                                                          : "bg-accent text-accent-foreground hover:bg-accent"
-                                                }`}
-                                            >
-                                                {tutor.teachingMode}
-                                            </Badge>
+                                            <p className="text-foreground font-medium">
+                                                {tutor.studentEmail}
+                                            </p>
                                         </div>
 
                                         {/* Fee */}
                                         <div className="min-w-32.5">
                                             <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                                                Fee / Hour
+                                                Status
                                             </p>
-                                            <p className="text-xl font-semibold text-foreground">
-                                                ৳{tutor.hourlyFee}
+                                            <p className="font-mediam text-foreground">
+                                                {tutor.status ? (
+                                                    <span className="text-green-500">
+                                                        Booked
+                                                    </span>
+                                                ) : (
+                                                    <span className="text-red-500">
+                                                        Canceled
+                                                    </span>
+                                                )}
                                             </p>
                                         </div>
 
                                         {/* Actions */}
                                         <div className="flex items-center gap-2">
+                                            <Canceled tutor={tutor}></Canceled>
                                             <DeleteTutorSession
                                                 tutor={tutor}
                                             ></DeleteTutorSession>

@@ -1,4 +1,4 @@
-import { Trash2, Trash2Icon } from "lucide-react";
+import { CircleX, X } from "lucide-react";
 import { Button } from "../ui/button";
 import {
     AlertDialog,
@@ -16,25 +16,24 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-const DeleteTutorSession = ({ tutor }) => {
+const Canceled = ({ tutor }) => {
     const router = useRouter();
-    // console.log(tutor._id);
-    const handleDelete = async () => {
+    const handleCancel = async () => {
         const { data: tokenData } = await authClient.token();
         const token = tokenData?.token;
 
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_SERVER_API}/booked/${tutor._id}`,
+            `${process.env.NEXT_PUBLIC_SERVER_API}/booked/update/${tutor._id}`,
             {
-                method: "DELETE",
+                method: "PATCH",
                 headers: {
                     authorization: `Bearer ${token}`,
                 },
+                body: JSON.stringify({ status: false }),
             },
         );
         const data = await res.json();
-        // console.log(data);
-        // console.log("clicked");
+
         if (data) {
             toast.success("Delete Successfully");
             router.refresh();
@@ -46,25 +45,26 @@ const DeleteTutorSession = ({ tutor }) => {
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="text-destructive hover:bg-destructive/10 hover:text-destructive cursor-pointer"
+                    disabled={!tutor.status}
+                    className="text-black/80 hover:bg-black/10 hover:text-black cursor-pointer"
                 >
-                    <Trash2 className="w-5 h-5" />
+                    <X className="w-5 h-5" />
                 </Button>
             </AlertDialogTrigger>
             <AlertDialogContent size="sm">
                 <AlertDialogHeader>
                     <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
-                        <Trash2Icon />
+                        <CircleX />
                     </AlertDialogMedia>
                     <AlertDialogTitle className="text-2xl">
-                        Delete tutor session?
+                        Cancel tutor session?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action will permanently delete this{" "}
+                        This action will permanently Cencel this{" "}
                         <span className="text-red-500 font-semibold">
                             {tutor.tutorName}
                         </span>{" "}
-                        session. Once deleted, the session cannot be restored.
+                        session. Once canceled, the session cannot be restored.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
@@ -76,10 +76,10 @@ const DeleteTutorSession = ({ tutor }) => {
                     </AlertDialogCancel>
                     <AlertDialogAction
                         variant="destructive"
-                        onClick={handleDelete}
+                        onClick={handleCancel}
                         className="cursor-pointer"
                     >
-                        Delete
+                        Confirm
                     </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
@@ -87,4 +87,4 @@ const DeleteTutorSession = ({ tutor }) => {
     );
 };
 
-export default DeleteTutorSession;
+export default Canceled;

@@ -1,5 +1,3 @@
-"use client";
-
 import {
     FaCalendar,
     FaClock,
@@ -15,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import BookedModal from "./BookedModal";
+import ExpiredDialog from "./ExpiredDialog";
 
 export default function TutorDetailsPage({ tutor }) {
     const {
@@ -37,6 +36,9 @@ export default function TutorDetailsPage({ tutor }) {
         rating = 4.9,
         reviewCount = 47,
     } = tutor;
+
+    const checkExpired = new Date() >= new Date(sessionEndDate);
+    // console.log(sessionExpired);
 
     return (
         <div className="min-h-[90vh] bg-background">
@@ -185,12 +187,12 @@ export default function TutorDetailsPage({ tutor }) {
                             <div className="absolute top-4 right-4">
                                 <Badge
                                     variant="secondary"
-                                    className={`bg-[#60a5fa] text-black font-medium py-2 ${
+                                    className={`bg-[#60a5fa] font-medium py-2 ${
                                         teachingMode === "Online"
-                                            ? "bg-[#34d399]"
-                                            : teachingMode === "Offline"
-                                              ? ""
-                                              : "bg-[#22d3ee]"
+                                            ? "bg-secondary text-secondary-foreground hover:bg-secondary"
+                                            : teachingMode === "Both"
+                                              ? "bg-primary text-primary-foreground hover:bg-primary"
+                                              : "bg-accent text-accent-foreground hover:bg-accent"
                                     }`}
                                 >
                                     {teachingMode}
@@ -217,15 +219,21 @@ export default function TutorDetailsPage({ tutor }) {
                                 </div>
 
                                 <div className="flex items-center justify-between">
-                                    <p className="text-sm text-muted-foreground">
-                                        Slots Remaining
+                                    <p className="text-lg text-muted-foreground">
+                                        Slots
                                     </p>
                                     <span className="text-lg font-bold text-foreground">
                                         {totalSlot}
                                     </span>
                                 </div>
 
-                                <BookedModal tutor={tutor}></BookedModal>
+                                {checkExpired ? (
+                                    <ExpiredDialog
+                                        tutor={tutor}
+                                    ></ExpiredDialog>
+                                ) : (
+                                    <BookedModal tutor={tutor}></BookedModal>
+                                )}
                             </CardContent>
                         </Card>
                     </div>

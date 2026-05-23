@@ -15,11 +15,14 @@ import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const BookedModal = ({ tutor }) => {
+    const [open, setOpen] = useState(false);
+    const router = useRouter();
     const { data: session } = authClient.useSession();
     const user = session?.user;
 
@@ -49,6 +52,7 @@ const BookedModal = ({ tutor }) => {
             studentName: data.studentName,
             studentEmail: data.studentEmail,
             studentPhone: data.studentPhone,
+            status: true,
         };
         // console.log(bookedData);
 
@@ -72,18 +76,33 @@ const BookedModal = ({ tutor }) => {
 
         if (res.ok) {
             toast.success("Session booked successfully!");
+            setOpen(false);
+            router.refresh();
         } else {
             toast.error("Failed to book session. Please try again.");
+            return;
         }
-        redirect(`/tutors/:${user._id}`);
+
+        const updateRes = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_API}/booked/${tutor._id}`,
+            {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${tokenData?.token}`,
+                },
+            },
+        );
     };
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button
                     size="lg"
                     className="w-full text-lg font-medium py-6 hover-primary cursor-pointer"
+                    disabled={Number(tutor.totalSlot) === 0}
+                    onClick={() => setOpen(true)}
                 >
                     Book Session Now
                 </Button>
@@ -96,6 +115,7 @@ const BookedModal = ({ tutor }) => {
                         Book your tutor session and take the next <br /> step
                         toward your goals.
                     </DialogDescription>
+                    <p>ID {tutor.tutorId}</p>
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit(onSubmit)}>

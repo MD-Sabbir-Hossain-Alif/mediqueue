@@ -12,14 +12,15 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { redirect } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const DeleteTutor = ({ tutor }) => {
+    const router = useRouter();
     // console.log(tutor._id);
     const handleDelete = async () => {
-        const { token } = await auth.api.getToken({
-            headers: await headers(),
-        });
+        const { data: tokenData } = await authClient.token();
+        const token = tokenData?.token;
 
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_API}/tutors/${tutor._id}`,
@@ -34,7 +35,7 @@ const DeleteTutor = ({ tutor }) => {
         // console.log(data);
         // console.log("clicked");
         if (data) {
-            redirect("/my-tutors");
+            router.refresh("/my-tutors");
         }
     };
     return (

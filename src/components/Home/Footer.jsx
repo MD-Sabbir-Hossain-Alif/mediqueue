@@ -10,6 +10,7 @@ import {
     FaEnvelope,
     FaMapMarkerAlt,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
     return (
@@ -182,6 +183,13 @@ const Footer = () => {
                                     className="hover:text-primary transition-colors"
                                 >
                                     <FaLinkedin />
+                                </Link>
+                                <Link
+                                    href="https://x.com"
+                                    target="_blank"
+                                    className="hover:text-primary transition-colors"
+                                >
+                                    <FaXTwitter />
                                 </Link>
                             </div>
                         </div>
