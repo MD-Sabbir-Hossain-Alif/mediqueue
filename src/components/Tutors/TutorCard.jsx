@@ -1,10 +1,5 @@
 import Image from "next/image";
-import {
-    FaCalendar,
-    FaClock,
-    FaGraduationCap,
-    FaLocationDot,
-} from "react-icons/fa6";
+import { FaCalendar, FaClock, FaGraduationCap } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import {
     Card,

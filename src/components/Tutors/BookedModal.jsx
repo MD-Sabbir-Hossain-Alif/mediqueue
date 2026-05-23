@@ -115,10 +115,12 @@ const BookedModal = ({ tutor }) => {
                         Book your tutor session and take the next <br /> step
                         toward your goals.
                     </DialogDescription>
-                    <p>ID {tutor.tutorId}</p>
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <h4 className="border-b-2 text-center">
+                        Tutor ID: {tutor._id}
+                    </h4>
                     <FieldGroup className="py-4">
                         <Field>
                             <Label>Tutor Name</Label>

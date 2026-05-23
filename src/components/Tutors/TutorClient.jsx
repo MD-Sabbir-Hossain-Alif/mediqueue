@@ -8,20 +8,32 @@ import ScrollAnimation from "./ScrollAnimation";
 
 const TutorClient = ({ tutors }) => {
     const [search, setSearch] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
 
     const filteredTutors = useMemo(() => {
+        const searchTerm = search.trim().toLowerCase();
+
         return tutors.filter((tutor) => {
-            const searchTerm = search.toLowerCase();
-            return (
-                tutor.name?.toLowerCase().includes(searchTerm) ||
-                tutor.subjects?.some((sub) =>
-                    sub.toLowerCase().includes(searchTerm),
-                ) ||
-                tutor.location?.toLowerCase().includes(searchTerm) ||
-                tutor.bio?.toLowerCase().includes(searchTerm)
-            );
+            const nameMatch = tutor.tutorName
+                ?.toLowerCase()
+                .includes(searchTerm);
+
+            const filterStart = startDate ? new Date(startDate) : null;
+            const filterEnd = endDate ? new Date(endDate) : null;
+
+            // tutor session range
+            const tutorStart = new Date(tutor.sessionStartDate);
+            const tutorEnd = new Date(tutor.sessionEndDate);
+
+            // overlap logic (IMPORTANT)
+            const dateMatch =
+                (!filterStart || tutorEnd >= filterStart) &&
+                (!filterEnd || tutorStart <= filterEnd);
+
+            return nameMatch && dateMatch;
         });
-    }, [tutors, search]);
+    }, [tutors, search, startDate, endDate]);
 
     // Scroll + Filter Animation
     const transitions = useTransition(filteredTutors, {
@@ -34,7 +46,7 @@ const TutorClient = ({ tutors }) => {
 
     return (
         <>
-            <div className="text-center">
+            <div className="text-center mb-3">
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground">
                     Our Best Tutors
                 </h1>
@@ -45,26 +57,43 @@ const TutorClient = ({ tutors }) => {
             </div>
 
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto mb-5 px-4">
-                <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
-                        <Search className="w-5 h-5" />
+            <div className="mb-5 px-6 md:px-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+                    <div className="relative w-full md:col-span-1">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
+                            <Search className="w-5 h-5" />
+                        </div>
+
+                        <input
+                            type="text"
+                            placeholder="Search by tutor name..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="w-full bg-card border border-border pl-12 pr-5 py-2 rounded-2xl"
+                        />
                     </div>
-                    <input
-                        type="text"
-                        placeholder="Search by tutor name, subject, or location..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        className="w-full bg-card border border-border pl-12 pr-5 py-4 rounded-2xl focus:outline-none focus:border-primary transition-all text-foreground placeholder:text-muted-foreground"
-                    />
-                    {search && (
-                        <button
-                            onClick={() => setSearch("")}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                        >
-                            Clear
-                        </button>
-                    )}
+
+                    <div className="flex items-center justify-between gap-4">
+                        <span className="text-foreground w-20">Start Date</span>
+
+                        <input
+                            type="date"
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
+                            className="flex-1 bg-card border border-border px-2 py-2 rounded-2xl"
+                        />
+                    </div>
+
+                    <div className="flex items-center justify-between gap-4">
+                        <span className="text-foreground w-20">End Date</span>
+
+                        <input
+                            type="date"
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
+                            className="flex-1 bg-card border border-border px-2 py-2 rounded-2xl"
+                        />
+                    </div>
                 </div>
             </div>
 
