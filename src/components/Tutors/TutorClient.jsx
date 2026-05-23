@@ -52,7 +52,7 @@ const TutorClient = ({ tutors: initialTutors }) => {
         }
 
         searchTutors(value, startDate, endDate);
-        console.log("start", tutors, startDate, endDate);
+        // console.log("start", tutors, startDate, endDate);
         // console.log(initialTutors);
     };
 
@@ -67,11 +67,11 @@ const TutorClient = ({ tutors: initialTutors }) => {
 
         searchTutors(search, start, end);
 
-        console.log("end", tutors, start, end);
+        // console.log("end", tutors, start, end);
         // console.log(initialTutors);
     };
 
-    console.log("search", tutors);
+    // console.log("search", tutors);
 
     // Scroll + Filter Animation
     const transitions = useTransition(tutors, {
