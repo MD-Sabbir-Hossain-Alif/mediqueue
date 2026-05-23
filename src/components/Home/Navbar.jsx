@@ -15,8 +15,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { FiMenu, FiX } from "react-icons/fi";
+import { useState } from "react";
 
 const Navbar = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
     const { data: session, isPending } = authClient.useSession();
     const user = session?.user;
 
@@ -28,12 +31,12 @@ const Navbar = () => {
                     <div className="flex-1 flex items-center justify-start gap-3">
                         <Link
                             href="/"
-                            className="text-2xl font-bold hover:text-[#367e95] dark:hover:text-[#72cfff]"
+                            className="text-xl md:text-2xl font-bold hover:text-[#367e95] dark:hover:text-[#72cfff]"
                         >
                             MediQueue
                         </Link>
                     </div>
-                    <ul className="hidden md:flex items-center gap-4">
+                    <ul className="hidden md:flex items-center gap-2 lg:gap-4">
                         <li>
                             <NavLink href="/">Home</NavLink>
                         </li>
@@ -113,6 +116,56 @@ const Navbar = () => {
                             <ModeToggle />
                         </li>
                     </ul>
+                    {/* hamburger menu (mobile only) */}
+                    <div className="md:hidden flex items-center">
+                        <button
+                            className="text-xl sm:text-2xl ml-2"
+                            onClick={() => setMenuOpen(!menuOpen)}
+                        >
+                            {menuOpen ? <FiX /> : <FiMenu />}
+                        </button>
+
+                        {/* backdrop */}
+                        {menuOpen && (
+                            <div
+                                className="fixed inset-0 bg-black/30 md:hidden"
+                                onClick={() => setMenuOpen(false)}
+                            />
+                        )}
+
+                        {/* mobile menu */}
+                        <div
+                            className={`fixed top-16 right-4 w-56 z-40 border border-accent rounded-lg bg-card shadow-lg p-4 transform transition-all duration-300 ease-in-out ${
+                                menuOpen
+                                    ? "translate-y-0 opacity-100 scale-100"
+                                    : "-translate-y-5 opacity-0 scale-95 pointer-events-none"
+                            }`}
+                        >
+                            <ul className="flex flex-col gap-3 text-base font-semibold">
+                                <li onClick={() => setMenuOpen(false)}>
+                                    <NavLink href="/">Home</NavLink>
+                                </li>
+                                <li onClick={() => setMenuOpen(false)}>
+                                    <NavLink href="/tutors">Tutors</NavLink>
+                                </li>
+                                <li onClick={() => setMenuOpen(false)}>
+                                    <NavLink href="/add-tutor">
+                                        Add Tutor
+                                    </NavLink>
+                                </li>
+                                <li onClick={() => setMenuOpen(false)}>
+                                    <NavLink href="/my-tutors">
+                                        My Tutors
+                                    </NavLink>
+                                </li>
+                                <li onClick={() => setMenuOpen(false)}>
+                                    <NavLink href="/my-booked-sessions">
+                                        My Booked Sessions
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </header>
             </div>
         </nav>

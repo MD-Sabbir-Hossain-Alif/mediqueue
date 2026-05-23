@@ -221,7 +221,7 @@ const UpdateTutor = ({ tutor }) => {
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto dark:bg-black/30">
                 <DialogHeader className="text-center">
                     <DialogTitle>Update Tutor Profile</DialogTitle>
                     <DialogDescription>

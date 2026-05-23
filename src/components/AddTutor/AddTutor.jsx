@@ -179,7 +179,7 @@ const AddTutor = () => {
     return (
         <div className="min-h-[90vh] bg-background py-12 px-4">
             <div className="max-w-3xl mx-auto">
-                <Card className="shadow-xl">
+                <Card className="shadow-xl dark:bg-black/10">
                     <CardHeader className="text-center">
                         <CardTitle className="text-3xl">
                             Register as a Tutor

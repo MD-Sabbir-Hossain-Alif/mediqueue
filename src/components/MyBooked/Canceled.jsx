@@ -48,10 +48,10 @@ const Canceled = ({ tutor }) => {
                     disabled={!tutor.status}
                     className="text-black/80 hover:bg-black/10 hover:text-black cursor-pointer"
                 >
-                    <X className="w-5 h-5" />
+                    <X className="w-5 h-5 dark:text-white" />
                 </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent size="sm">
+            <AlertDialogContent size="sm" className="dark:bg-black/10!">
                 <AlertDialogHeader>
                     <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
                         <CircleX />

@@ -123,7 +123,7 @@ const Register = () => {
             {/* ── Right form panel ── */}
             <div className="w-full lg:w-1/2 flex items-center justify-center sm:p-4 md:p-0 overflow-y-auto">
                 <div className="w-full max-w-md py-8">
-                    <Card className="border-border shadow-sm">
+                    <Card className="border-border shadow-sm dark:bg-black/30!">
                         <CardHeader className="text-center">
                             <CardTitle className="text-3xl font-bold tracking-tight">
                                 Create account

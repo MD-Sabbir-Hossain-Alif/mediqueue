@@ -112,7 +112,7 @@ const Login = () => {
             {/* Right Form Panel */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
                 <div className="w-full max-w-md">
-                    <Card>
+                    <Card className="dark:bg-black/30!">
                         <CardHeader className="text-center">
                             <CardTitle className="text-3xl font-bold tracking-tight">
                                 Welcome back
@@ -140,7 +140,7 @@ const Login = () => {
                                             id="email"
                                             type="email"
                                             placeholder="you@example.com"
-                                            className="pl-10 h-11 bg-input dark:bg-input-dark"
+                                            className="pl-10 h-11 bg-input"
                                             {...form.register("email")}
                                         />
                                     </div>
@@ -176,7 +176,7 @@ const Login = () => {
                                                     : "password"
                                             }
                                             placeholder="Enter your password"
-                                            className="pl-10 pr-10 h-11 bg-input dark:bg-input-dark"
+                                            className="pl-10 pr-10 h-11 bg-input"
                                             {...form.register("password")}
                                         />
                                         <button
