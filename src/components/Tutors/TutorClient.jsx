@@ -5,6 +5,7 @@ import { useTransition, animated } from "@react-spring/web";
 import TutorCard from "./TutorCard";
 import { Search } from "lucide-react";
 import ScrollAnimation from "./ScrollAnimation";
+import { Button } from "../ui/button";
 
 const TutorClient = ({ tutors: initialTutors }) => {
     const [tutors, setTutors] = useState(initialTutors);
@@ -142,7 +143,7 @@ const TutorClient = ({ tutors: initialTutors }) => {
                     </div>
 
                     <div className="justify-end">
-                        <button
+                        <Button
                             onClick={() => {
                                 setSearch("");
                                 setStartDate("");
@@ -150,10 +151,12 @@ const TutorClient = ({ tutors: initialTutors }) => {
                                 handleSearch("");
                                 handleDateChange("", "");
                             }}
-                            className="px-5 py-2 rounded-xl border bg-background hover:bg-muted transition"
+                            className="w-full text-lg transition-all duration-300 font-medium py-5
+                                bg-primary hover:bg-(--primary-hover) 
+                                cursor-pointer"
                         >
                             Reset
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

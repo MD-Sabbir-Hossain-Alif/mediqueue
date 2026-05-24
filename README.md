@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MediQueue – Tutor Booking System
 
-## Getting Started
+🌐 **Live Site:** [https://mediqueue-gamma.vercel.app](https://mediqueue-gamma.vercel.app)
 
-First, run the development server:
+📦 **Server Repository:** [https://github.com/MD-Sabbir-Hossain-Alif/mediqueue-server](https://github.com/MD-Sabbir-Hossain-Alif/mediqueue-server)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## About MediQueue
+
+MediQueue is a modern tutor booking web application where students can register, browse available tutors, and book online or offline learning sessions based on subject and time availability. The system generates digital session tokens for each booking and allows users to manage their scheduled classes efficiently.
+
+---
+
+## ✨ Key Features
+
+- **Smart Tutor Booking System** – Students can browse tutors by subject and time slot, book sessions with a single click, and receive a unique session token. The system automatically tracks slot availability and prevents overbooking by decreasing total slots after each confirmed booking.
+
+- **Secure Authentication with JWT** – Full email/password and Google OAuth login powered by Better Auth. JSON Web Tokens (JWT) are issued on login and sent with every protected request, ensuring private routes (Add Tutor, My Tutors, My Booked Sessions) are accessible only to verified users.
+
+- **Real-Time Search & Filter** – The Tutors page supports live name-based search using MongoDB's `$regex` operator (case-insensitive), plus date-range filtering with `$gte`/`$lte` operators, so students can quickly find the right tutor for their schedule.
+
+- **Full CRUD for Tutors** – Logged-in users can add new tutors via a rich form (with date picker, dropdowns, and image upload), update tutor details through a pre-filled modal without page reload, and delete entries with a confirmation prompt — all with toast notifications for every action.
+
+- **Dark / Light Theme Toggle** – A persistent theme switcher in the navbar lets users toggle between dark and light modes across the entire application, powered by `next-themes` for a smooth and accessible experience.
+
+- **Responsive & Animated UI** – Built with Next.js 16, Tailwind CSS v4, shadcn/ui, and GSAP animations, the interface is fully responsive across mobile, tablet, and desktop. Smooth transitions and a consistent design language are maintained throughout all pages.
+
+- **Session Management & Booking History** – The My Booked Sessions page shows each student only their own bookings in a table format, with the ability to cancel a session through a confirmation modal that updates the booking status in real time via a PATCH request.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend (Client)
+
+| Category       | Technologies                                                           |
+| -------------- | ---------------------------------------------------------------------- |
+| Framework      | Next.js 16, React 19                                                   |
+| Styling        | Tailwind CSS v4, shadcn/ui, Radix UI                                   |
+| Animation      | GSAP, React Spring, tw-animate-css                                     |
+| Authentication | Better Auth, JWT (jsonwebtoken)                                        |
+| Database       | MongoDB                                                                |
+| Forms          | React Hook Form, Zod, @hookform/resolvers                              |
+| Date Handling  | date-fns, react-day-picker                                             |
+| UI Extras      | Swiper, react-fast-marquee, lucide-react, react-icons, Sonner (toasts) |
+
+### Backend (Server)
+
+| Category       | Technologies          |
+| -------------- | --------------------- |
+| Runtime        | Node.js               |
+| Framework      | Express.js 5          |
+| Database       | MongoDB               |
+| Authentication | JOSE (JWT — jose-cjs) |
+| Config         | dotenv                |
+| CORS           | cors                  |
+| Dev Tools      | nodemon               |
+
+---
+
+## 📁 Project Structure
+
+```
+mediqueue/
+├── app/                  # Next.js App Router pages & API routes
+├── components/           # Reusable UI components
+├── lib/                  # Auth, DB connection, utilities
+├── public/               # Static assets
+└── ...config files
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📄 License
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project was built as part of a programming hero assignment. All rights reserved © MD Sabbir Hossain Alif.
