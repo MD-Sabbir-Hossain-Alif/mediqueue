@@ -31,9 +31,12 @@ const TutorClient = ({ tutors: initialTutors }) => {
                 endDate: end,
             });
 
-            const res = await fetch(`http://localhost:5000/search?${query}`, {
-                signal: controller.signal,
-            });
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_SERVER_API}/search?${query}`,
+                {
+                    signal: controller.signal,
+                },
+            );
 
             if (!res.ok) return;
 
